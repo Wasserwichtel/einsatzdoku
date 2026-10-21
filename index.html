@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Einsatzdoku Wasserwacht</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#B71C1C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap">
+<style>
+/* Feldtauglich: große Tippflächen, Zeiten in schmaler Ziffernschrift, Rot nur für Alarm und Fehlendes */
+:root{--bg:#f2f4f6;--card:#ffffff;--text:#15191f;--muted:#566070;--line:#d5dbe2;--red:#b71c1c;--on-red:#ffffff;--red-bg:#fbe9e9;--blue:#0b4f9c;--on-blue:#ffffff;--blue-bg:#e6effa;--green:#1b5e20;--green-bg:#e2f2e4;--yellow:#6f5200;--yellow-bg:#fff2c4;--grey-bg:#e9edf1;--toast-bg:#1f242b;--toast-fg:#ffffff;--scrim:rgba(10,14,20,.5);--radius:14px;--font-display:"Barlow Semi Condensed",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1b1f25;--text:#eef1f4;--muted:#a1aab6;--line:#333a44;--red:#e5534f;--on-red:#ffffff;--red-bg:#3a1c1e;--blue:#7fb0ff;--on-blue:#0b1626;--blue-bg:#18263c;--green:#86c98a;--green-bg:#1b2e1e;--yellow:#f3cc55;--yellow-bg:#372f14;--grey-bg:#272c34;--toast-bg:#eef1f4;--toast-fg:#111418;--scrim:rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1b1f25;--text:#eef1f4;--muted:#a1aab6;--line:#333a44;--red:#e5534f;--on-red:#ffffff;--red-bg:#3a1c1e;--blue:#7fb0ff;--on-blue:#0b1626;--blue-bg:#18263c;--green:#86c98a;--green-bg:#1b2e1e;--yellow:#f3cc55;--yellow-bg:#372f14;--grey-bg:#272c34;--toast-bg:#eef1f4;--toast-fg:#111418;--scrim:rgba(0,0,0,.6);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.4 var(--font-body);-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--red)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--red);color:var(--on-red);padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;align-items:center;gap:10px;min-height:56px}
+header h1{font-family:var(--font-display);font-size:21px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;letter-spacing:.2px}
+header .sub{font-size:13px;opacity:.92}
+header button{background:rgba(255,255,255,.18);color:var(--on-red);border:0;border-radius:10px;padding:8px 12px;font-size:15px;font-family:var(--font-body)}
+main{padding-block:12px 110px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:900px;margin:0 auto}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:5;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+nav button{border:0;background:none;color:var(--muted);padding:14px 2px 15px;font-family:var(--font-display);font-size:16px;font-weight:600;position:relative;min-height:56px}
+nav button.on{color:var(--red);box-shadow:inset 0 3px 0 var(--red)}
+nav .dot{position:absolute;top:4px;right:10%;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:var(--on-red);font-size:11px;line-height:18px;font-weight:700;font-family:var(--font-body)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:12px}
+.card h2{font-family:var(--font-display);font-size:16px;margin:0 0 10px;color:var(--muted);font-weight:600;letter-spacing:.3px;text-wrap:balance}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (min-width:640px){.grid2.wide{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.tbtn{border:2px solid var(--line);background:var(--card);color:var(--text);border-radius:var(--radius);padding:12px 10px;min-height:84px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;font-size:15px;font-family:var(--font-body)}
+.tbtn .t{font-family:var(--font-display);font-size:34px;font-weight:700;letter-spacing:.5px;font-variant-numeric:tabular-nums}
+.tbtn.leer{border-style:dashed;color:var(--muted)}
+.tbtn.leer .t{font-size:20px;font-weight:600;color:var(--red)}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 6px;border-radius:6px;background:var(--blue-bg);color:var(--blue);margin-left:6px;vertical-align:middle}
+.btn{border:0;border-radius:12px;padding:14px 16px;font-family:var(--font-display);font-size:18px;font-weight:600;background:var(--grey-bg);color:var(--text);min-height:52px}
+.btn.primary{background:var(--red);color:var(--on-red)}
+.btn.blue{background:var(--blue);color:var(--on-blue)}
+.btn.block{width:100%;display:block}
+.btn.small{padding:8px 12px;min-height:42px;font-size:16px}
+.row{display:flex;gap:8px;align-items:center}
+.row > *{flex:1;min-width:0}
+label.f{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
+input,select,textarea{width:100%;font:inherit;color:var(--text);background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;min-height:48px}
+textarea{min-height:90px}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{flex:1 1 auto;border:1.5px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:10px 8px;min-height:46px;font-size:15px;font-family:var(--font-body)}
+.seg button.on{background:var(--blue);border-color:var(--blue);color:var(--on-blue);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--text);border-radius:22px;padding:9px 14px;font-size:15px;min-height:44px;font-family:var(--font-body)}
+.chip.add{border-style:dashed}
+.gbu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:640px){.gbu{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.gt{border:2px solid var(--line);border-radius:12px;background:var(--grey-bg);color:var(--text);padding:9px 10px;text-align:left;min-height:70px;font-size:14px;font-family:var(--font-body)}
+.gt small{display:block;color:var(--muted);font-size:12px}
+.gt .lv{display:block;font-weight:700;font-size:13px;margin-top:3px;text-transform:uppercase;letter-spacing:.6px}
+.gt.l1{background:var(--green-bg);border-color:var(--green)}.gt.l1 .lv{color:var(--green)}
+.gt.l2{background:var(--yellow-bg);border-color:var(--yellow)}.gt.l2 .lv{color:var(--yellow)}
+.gt.l3{background:var(--red-bg);border-color:var(--red)}.gt.l3 .lv{color:var(--red)}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:6px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.item .nm{font-weight:600}
+.tm{border:1.5px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 10px;min-width:70px;min-height:44px;font-family:var(--font-display);font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.tm.leer{color:var(--red);border-style:dashed}
+.x{border:0;background:none;color:var(--muted);font-size:22px;min-width:40px;min-height:44px}
+.vl{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line)}
+.miss{list-style:none;padding:0;margin:0}
+.miss li{padding:10px 12px;border-radius:10px;background:var(--red-bg);color:var(--red);margin-bottom:6px;font-weight:600;cursor:pointer}
+.ok{padding:12px;border-radius:10px;background:var(--green-bg);color:var(--green);font-weight:600}
+.hint{font-size:14px;color:var(--muted);margin:8px 0 0}
+.note{padding:10px 12px;border-radius:10px;background:var(--blue-bg);color:var(--blue);font-size:14px;margin:8px 0}
+.warn{padding:10px 12px;border-radius:10px;background:var(--yellow-bg);color:var(--yellow);font-size:14px;margin:8px 0;font-weight:600}
+.list .card{display:block;width:100%;text-align:left;color:var(--text);font-family:var(--font-body)}
+.list .meta{font-size:14px;color:var(--muted)}
+.alarmbanner{background:var(--red);color:var(--on-red);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.alarmbanner .btn{background:var(--card);color:var(--red);margin-top:10px;width:100%}
+.wgrid{display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:6px;align-items:center;font-size:13px}
+.wgrid button{border:1.5px solid var(--line);background:var(--card);border-radius:10px;min-height:46px;font-size:18px;color:var(--text)}
+.wgrid button.on{background:var(--blue);border-color:var(--blue)}
+.step{display:flex;align-items:center;gap:6px}
+.step button{width:52px;flex:0 0 52px;min-height:48px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);font-size:22px;color:var(--text)}
+.step input{flex:1 1 auto;width:auto;min-width:72px;text-align:center;font-family:var(--font-display);font-size:28px;font-weight:700;min-height:56px;padding:6px 8px;font-variant-numeric:tabular-nums}
+.step .einheit{flex:0 0 auto;font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--muted)}
+.step button{min-height:56px}
+.temps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:4px 16px}
+#modal{position:fixed;inset:0;background:var(--scrim);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+#modal[hidden]{display:none}
+#modal .sheet{background:var(--card);width:100%;max-width:520px;border-radius:18px 18px 0 0;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+#modal h3{margin:0 0 12px;font-family:var(--font-display);font-size:22px}
+#modal input[type=time]{font-family:var(--font-display);font-size:38px;font-weight:700;text-align:center;min-height:64px}
+#toast{position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--toast-bg);color:var(--toast-fg);padding:10px 16px;border-radius:12px;font-size:15px;z-index:30;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90%}
+#toast.on{opacity:1}
+.sync{font-size:12px;opacity:.92}
+.qr{display:flex;justify-content:center;margin:4px 0 8px}
+.qr svg{width:220px;height:220px;max-width:100%;background:#fff;border-radius:12px}
+.btn.jetzt{min-height:72px;font-size:24px;margin-bottom:12px}
+.zgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:640px){.zgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.zr{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 10px;min-height:52px;font-family:var(--font-body);font-size:14px;text-align:left}
+.zr b{font-family:var(--font-display);font-size:22px;font-variant-numeric:tabular-nums}
+.zr.leer{border-style:dashed;color:var(--muted)}
+.zr.leer b{color:var(--muted)}
+.vl2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;width:100%;padding:10px 2px;border:0;border-top:1px solid var(--line);background:none;color:var(--text);text-align:left;font:inherit;cursor:pointer}
+.vl2:first-of-type{border-top:0}
+.vt{font-family:var(--font-display);font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.3}
+.vx{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.45}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+</style>
+<header id="hdr"></header>
+<main id="view"></main>
+<nav id="tabs" hidden></nav>
+<div id="modal" hidden><div class="sheet" id="sheet"></div></div>
+<div id="toast"></div>
+
+<script>
+'use strict';
+/* =========================================================================
+   Einsatzdoku Wasserwacht – Einsatzprotokoll WR (Version 2.2) und
+   Gefährdungsbeurteilung vor Ort. Daten liegen im Gerät (localStorage) und,
+   wenn eingerichtet, in der Home-Assistant-To-do-Liste zum Abgleich.
+   Patientendaten werden bewusst NICHT erfasst.
+   ========================================================================= */
+
+const LS_KEY = 'einsatzdoku.v1';
+/* Läuft die Seite als Claude-Artefakt? Dann speichert sie privat im
+   Claude-Konto und bietet PDFs über den Speichern-Dialog an. Sonst (auf
+   Home Assistant oder direkt vom PC) gilt die Gerätespeicherung. */
+const ARTEFAKT = !!(window.claude && typeof window.claude.use === 'function');
+/* Web-App für alle (beim Bauen auf true gesetzt): alles bleibt nur auf dem
+   Handy, kein Home Assistant, PDFs speichern oder teilen, QR-Code zum Weitergeben */
+const WEB = true;
+const QR_URL = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+const appAdresse = () => location.origin + location.pathname.replace(/index\.html$/, '');
+const PDF_LIB_URL = 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
+
+const FUNKTIONEN = ['EL-WRD','SEG-Führer','Taucheinsatzführer','Taucher','Leinenführer','Bootsführer','Wasserretter','Strömungsretter','Sonstiges'];
+// Im Formular ist das Funktionsfeld schmal: dort kommt die Kurzform hin
+const FUNKTION_PDF = {'EL-WRD':'EL-WRD','SEG-Führer':'SEG-Fhr','Taucheinsatzführer':'TEF','Taucher':'Taucher','Leinenführer':'Leinenf.','Bootsführer':'Bootsf.','Wasserretter':'WR','Strömungsretter':'Strömungsr.','Sonstiges':'Sonst.'};
+const funktionErkennen = t => { const s = (t || '').trim().toLowerCase(); if (!s) return ''; return FUNKTIONEN.find(f => f.toLowerCase() === s) || FUNKTIONEN.find(f => f.toLowerCase().startsWith(s)) || Object.keys(FUNKTION_PDF).find(f => FUNKTION_PDF[f].toLowerCase() === s) || ''; };
+const FAHRZEUGE_STANDARD = ['WW Wülf 91/1','WW Wülf 99/1','WW Wülf 90/1','WW NES 91/1','WW NES 99/1'].map(name => ({art: 'SEG', name, kennz: ''}));
+const EINHEIT_ARTEN = ['SEG','Wache','Boot','EL WR'];
+const T_ARTEN = [
+  {v:'1', t:'1 – abrechnungsfähig', d:'Patient an Rettungsdienst oder Arzt übergeben'},
+  {v:'8', t:'8 – beteiligt', d:'ohne Erfolg, oder eine andere Einheit rechnet ab'},
+  {v:'9', t:'9 – Fehlalarm / Abbruch', d:'auf der Anfahrt abgebrochen, nicht tätig geworden'},
+  {v:'0', t:'0 – EL WR', d:'Einsatz als Einsatzleiter Wasserrettung'}
+];
+const EINSATZARTEN = [
+  {v:'50', t:'50 – Lebensrettung / Eisrettung', abr:'ZAST'},
+  {v:'51', t:'51 – Vermisstensuche', abr:'Kreisverband'},
+  {v:'52', t:'52 – Sachbergung', abr:'Kreisverband'},
+  {v:'53R', t:'53 – Rettung aus Gefahrenlage', abr:'Kreisverband'},
+  {v:'53L', t:'53 – Leichenbergung', abr:'Kreisverband'},
+  {v:'54', t:'54 – SEG-Einsatz', abr:'Kreisverband'},
+  {v:'56', t:'56 – Krankentransport mit Boot', abr:'ZAST'},
+  {v:'58', t:'58 – Taucheinsatz', abr:'Kreisverband'}
+];
+// Die sechs Zeiten des Protokolls, in Einsatzreihenfolge. Jede gesetzte Zeit
+// steht automatisch auch als Zeile im Einsatzverlauf.
+const ZEITEN = [
+  ['alarm','Alarm'],['ausruecken','Ausrücken'],['an','An Einsatzstelle'],
+  ['fund','Fund/Rettung'],['uebergabe','Übergabe'],['ende','Ende/Zurück']
+];
+const ZEIT_VERLAUF = {alarm:'Alarmierung', ausruecken:'Ausrücken', an:'Eintreffen an der Einsatzstelle', fund:'Fund/Rettung', uebergabe:'Übergabe', ende:'Einsatzende, zurück am Standort'};
+const PDF_ZEIT = {alarm:'Alarm', ausruecken:'Ausrücken', an:'An', fund:'Fund/Rettung', uebergabe:'Übergabe', ende:'Ende/Zurück'};
+const BINS = [['0.0','0–0,2'],['0.2','0,2–0,5'],['0.5','0,5–1'],['1.0','1–2,5'],['2.5','2,5–4'],['4.0','4–6'],['6.0','6–10'],['12.0','12–20']];
+const WOLKEN = [['A','☀️','sonnig'],['B','🌤️','heiter'],['C','⛅','wolkig'],['D','☁️','bedeckt']];
+const NIEDER = [['1','—','kein'],['2','💧','leicht'],['3','💧💧','mittel'],['4','⛈️','stark']];
+const GBU = [
+  [1,'Absturz','Absturzkante, Schacht, …'],
+  [2,'Atemgifte','Sauerstoffmangel, Gase, CO2, …'],
+  [3,'Ausbreitung','Windrichtung, Ausströmen, Auslaufen, …'],
+  [4,'Atomare Strahlung','Kontamination, Inkorporation, …'],
+  [5,'Angst / psychische Belastung','Tote, Verletzte, Leid, Hilflosigkeit'],
+  [6,'Brand','Verbrennung, Verbrühung, Rauche, …'],
+  [7,'Biologische Stoffe','Krankheitserreger, Körperflüssigkeiten, …'],
+  [8,'Chemische Stoffe','Gefahrstoffe, Gefahrgut, Einleitungen …'],
+  [9,'Durchbruch','Deich, Damm, Hangrutsch, …'],
+  [10,'Explosion','Gasaustritt, Stäube, Druckbehälter, …'],
+  [11,'Einsturz','Wand, Gebäude, Regal, Graben, …'],
+  [12,'Erkrankung / Verletzung','Ausrutschen, Stoßen, Hitzschlag/Sonnenstich, …'],
+  [13,'Elektrizität','Defekte Isolierung, Erdung, Überflutung …'],
+  [14,'Ertrinken','Eingeschlossene Räume, Eisdecke, …'],
+  [15,'Wasserverhältnisse','Temperatur, Eis, Wellenhöhe, Gezeiten'],
+  [16,'Strömung','Fließgeschwindigkeit in m/s'],
+  [17,'Gefahren im Wasser','Treibgut, Wehre, Schleusen, Buhnen, …'],
+  [20,'Temperatur / Klima','UV-Belastung, Hitze, Kälte, …'],
+  [21,'Niederschlag / Blitzgefahr','Regen, Schnee, Glatteis, Gewitter …'],
+  [22,'Wind (-bruch)','herabstürzende Gegenstände, Bäume, …'],
+  [24,'Sichtverhältnisse','Nebel, Rauch, Dunkelheit, Asche, …'],
+  [25,'Ungesicherter Verkehrsraum','Straße, Schiene, Schifffahrt, …'],
+  [21,'Gefährdung durch Tiere/Pflanzen','Ansteckung, Angriff, Gift, Allergie, …'],
+  [22,'Gefährdung durch Menschen','Panik, Bedrohung, Angriff …']
+];
+const STUFEN = ['', 'gering', 'mittel', 'hoch'];
+const MASSN_ALLG = ['PSA tragen','Abstand halten','Bereich absperren','Eigensicherung','Lage beobachten','Fachdienst nachfordern'];
+const MASSN_SPEZ = {
+  0:['Sicherungsleine','Absturzsicherung'], 4:['PSNV nachfordern','Einsatzkräfte betreuen'],
+  6:['Handschuhe','Desinfektion'], 8:['Fachberater','Abstand zur Böschung'],
+  11:['Rutschfeste Schuhe','Pausen / Getränke'], 12:['Strom abschalten lassen'],
+  13:['Rettungsweste','Eisretter / Leine'], 14:['Rettungsweste','Kälteschutz'],
+  15:['Sicherungsleine','Wurfsack','Strömungsretter'], 16:['Abstand zu Wehren','Boot sichern'],
+  17:['Wärmeerhalt','Sonnenschutz','Getränke'], 18:['Einsatz bei Gewitter unterbrechen'],
+  19:['Gefahrenbereich meiden'], 20:['Beleuchtung','Warnweste'], 21:['Warnweste','Absicherung durch Polizei/FW'],
+  22:['Handschuhe','Abstand'], 23:['Polizei hinzuziehen','Rückzugsweg freihalten']
+};
+// Ereignisse für den Verlauf. Mit „frage“ öffnet sich gleich das Textfeld,
+// damit genau festgehalten wird, wer was macht. „m“ setzt zusätzlich die
+// passende Protokollzeit (nur wenn sie noch leer ist).
+const EREIGNISSE = [
+  {t:'Eintreffen Einsatzstelle', m:'an', einmal:true},
+  {t:'Lagemeldung an ILS', frage:'Was wurde gemeldet?'},
+  {t:'Erkundung', frage:'Wer erkundet was? z. B. Bootstrupp 1 erkundet Uferbereich Nord'},
+  {t:'Nachalarmierung', frage:'Wer wurde nachalarmiert, warum?'},
+  {t:'Suche begonnen', frage:'Wer sucht wo, womit? z. B. Taucher 1 + 2, Abschnitt B'},
+  {t:'Person gesichtet', frage:'Wo, von wem gesichtet? Keine Namen von Betroffenen'},
+  {t:'Person gerettet', frage:'Wo, wie, durch wen gerettet?', m:'fund'},
+  {t:'Übergabe an RD', frage:'An welches Rettungsmittel übergeben?', m:'uebergabe', rd:true},
+  {t:'Suche ergebnislos', frage:'Welcher Bereich wurde abgesucht?'},
+  {t:'Einsatzabbruch', frage:'Grund, auf wessen Anordnung?'},
+  {t:'Rückfahrt'},
+  {t:'Einsatzbereit'}
+];
+const FK_ORGS = ['Polizei','Feuerwehr','Rettungsdienst','ELRD / OrgL','THW','DLRG','Wasserwacht'];
+
+/* ------------------------------------------------------------- Speicher */
+/* Leere Fahrzeugliste mit den Einheiten der SEG füllen, alte Funktionskürzel
+   auf die Wasserwacht-Liste umstellen */
+function standardsErgaenzen(s){
+  if (!s.fahrzeuge || !s.fahrzeuge.length) s.fahrzeuge = FAHRZEUGE_STANDARD.map(f => Object.assign({}, f));
+  (s.roster || []).forEach(r => { if (r.funktion && !FUNKTIONEN.includes(r.funktion)) r.funktion = funktionErkennen(r.funktion); });
+  return s;
+}
+function neueEinstellungen(){
+  return {kww:'', og:'', kwwNr:'', ogNr:'', gruppe:'SEG', unterschrift:'', erfasser:'',
+    eigeneEinheit:{art:'SEG', name:'', kennz:''}, roster:[], fahrzeuge: FAHRZEUGE_STANDARD.map(f => Object.assign({}, f)),
+    ha:{token:'', url:'', todo:'todo.einsatzdoku'}};
+}
+function load(){
+  try { const d = JSON.parse(localStorage.getItem(LS_KEY)); if (d && d.settings) { d.settings = standardsErgaenzen(Object.assign(neueEinstellungen(), d.settings)); d.settings.ha = Object.assign(neueEinstellungen().ha, d.settings.ha || {}); d.einsaetze = d.einsaetze || []; return d; } } catch(e) {}
+  return {settings: neueEinstellungen(), einsaetze: []};
+}
+let DB = load();
+let UI = {view:'liste', tab:'zeiten', aktiv:null, modal:null, ha:null, haErr:null, syncAt:null};
+function save(e){
+  if (e) { e.updatedAt = Date.now(); e.dirty = true; planePush(e); planeCloud('e-' + e.id); }
+  else { DB.settings.updatedAt = Date.now(); planeCloud('einstellungen'); }
+  try { localStorage.setItem(LS_KEY, JSON.stringify(DB)); } catch(err) { if (!SPEICHER.bereit) toast('Speichern im Gerät fehlgeschlagen'); }
+}
+
+/* Speicher im Claude-Konto (nur als Artefakt): je Person privat unter
+   data/users/<id>/, ein Dokument je Einsatz plus eines für die Einstellungen. */
+const SPEICHER = {col: null, bereit: false, geprueft: false, timer: new Map(), laeuft: new Set(), fehler: null};
+async function speicherStart(){
+  if (!ARTEFAKT) return;
+  try {
+    const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    const uid = db && user ? await user.id() : null;
+    if (!uid) { SPEICHER.geprueft = true; renderKopf(); return; }
+    SPEICHER.col = db.collection('data/users/' + uid);
+    const snap = await SPEICHER.col.get();
+    const vorhanden = new Set();
+    for (const d of snap.docs) {
+      const x = d.data(); if (!x) continue; vorhanden.add(d.id);
+      if (d.id === 'einstellungen') { if ((x.updatedAt || 0) > (DB.settings.updatedAt || 0)) DB.settings = standardsErgaenzen(Object.assign(neueEinstellungen(), x, {ha: DB.settings.ha})); }
+      else if (d.id.startsWith('e-') && x.id) { const l = DB.einsaetze.find(y => y.id === x.id); if (!l) DB.einsaetze.push(Object.assign({}, x)); else if ((x.updatedAt || 0) > (l.updatedAt || 0)) Object.assign(l, x); }
+    }
+    SPEICHER.bereit = true;
+    for (const e of DB.einsaetze) if (!vorhanden.has('e-' + e.id) || e.cloudOffen) planeCloud('e-' + e.id);
+    if (!vorhanden.has('einstellungen')) planeCloud('einstellungen');
+    DB.einsaetze.sort((a, b) => new Date(einsatzDatum(b)) - new Date(einsatzDatum(a)));
+    try { localStorage.setItem(LS_KEY, JSON.stringify(DB)); } catch(err) {}
+    render();
+  } catch(err) { SPEICHER.fehler = 'Claude-Speicher nicht erreichbar – Daten bleiben im Gerät'; renderKopf(); }
+}
+function planeCloud(docId){
+  if (docId.startsWith('e-')) { const e = DB.einsaetze.find(x => 'e-' + x.id === docId); if (e) e.cloudOffen = true; }
+  if (!SPEICHER.bereit) return;
+  clearTimeout(SPEICHER.timer.get(docId));
+  SPEICHER.timer.set(docId, setTimeout(() => cloudSchreiben(docId), 1500));
+}
+async function cloudSchreiben(docId){
+  if (SPEICHER.laeuft.has(docId)) { planeCloud(docId); return; }
+  SPEICHER.laeuft.add(docId);
+  try {
+    if (docId === 'einstellungen') { const s = JSON.parse(JSON.stringify(DB.settings)); delete s.ha; await SPEICHER.col.doc(docId).set(s); }
+    else { const e = DB.einsaetze.find(x => 'e-' + x.id === docId); if (e) { const k = JSON.parse(JSON.stringify(e)); delete k.dirty; delete k.cloudOffen; await SPEICHER.col.doc(docId).set(k); e.cloudOffen = false; } }
+    SPEICHER.fehler = null;
+  } catch(err) {
+    SPEICHER.fehler = err && err.code === 'quota_exceeded' ? 'Claude-Speicher voll – alte Einsätze löschen' : 'Speichern in Claude gerade nicht möglich – im Gerät gesichert';
+    if (err && (err.code === 'unavailable' || err.code === 'resource_exhausted')) setTimeout(() => planeCloud(docId), 5000 + Math.random() * 3000);
+  } finally {
+    SPEICHER.laeuft.delete(docId);
+    try { localStorage.setItem(LS_KEY, JSON.stringify(DB)); } catch(err) {}
+    renderKopf();
+  }
+}
+async function cloudLoeschen(id){ if (SPEICHER.bereit) { try { await SPEICHER.col.doc('e-' + id).delete(); } catch(err) {} } }
+
+/* Bildschirm im Einsatz anlassen, wenn das Gerät es erlaubt */
+let wachSperre = null;
+async function wachHalten(an){
+  try {
+    if (an && !wachSperre && navigator.wakeLock && document.visibilityState === 'visible') { wachSperre = await navigator.wakeLock.request('screen'); wachSperre.addEventListener('release', () => { wachSperre = null; }); }
+    if (!an && wachSperre) { await wachSperre.release(); wachSperre = null; }
+  } catch(err) { wachSperre = null; }
+}
+const aktiv = () => DB.einsaetze.find(x => x.id === UI.aktiv) || null;
+
+function neuerEinsatz(vonHa){
+  const s = DB.settings;
+  const e = {id: Math.random().toString(36).slice(2, 9), created: Date.now(), updatedAt: Date.now(),
+    haAlarmTs: null, abgeschlossen: false, gruppe: s.gruppe, kww: s.kww, og: s.og, kwwNr: s.kwwNr, ogNr: s.ogNr,
+    meldung: '', stelle: '', zeiten: {}, quelle: {}, uebergabeRD: false,
+    art: '', art59: false, art81: false, ilsElwr: '', fahrzeug: '',
+    wetter: {luft:'', wasser:'', stroemung:'', sicht:'', wind:'', symbol:''},
+    fk: [], einheiten: [], kraefte: [], verlauf: [],
+    gbu: {werte:{}, massn:{}, erfasser: erfasserText(s), zeit: null},
+    tart: '', ils: '', durchgefuehrt: '', abrechnung: '', anhang: {patient:false, tauch:false}, unterschrift: s.unterschrift};
+  if (s.eigeneEinheit && s.eigeneEinheit.name) e.einheiten.push({art: s.eigeneEinheit.art, name: s.eigeneEinheit.name, kennz: s.eigeneEinheit.kennz, an: null, ab: null, ils: '', tart: '', staerke: '', eigene: true});
+  // Du selbst bist automatisch Einsatzkraft – „an“ tippst du, wenn du da bist
+  if (s.unterschrift) e.kraefte.push({name: s.unterschrift, funktion: s.funktion || '', an: null, ab: null});
+  if (vonHa) {
+    e.haAlarmTs = vonHa.alarmTs;
+    zeitSetzen(e, 'alarm', new Date(vonHa.alarmTs * 1000).toISOString(), 'ha');
+    if (vonHa.meldung) e.meldung = vonHa.meldung;
+    if (vonHa.stelle) e.stelle = vonHa.stelle;
+  } else {
+    zeitSetzen(e, 'alarm', new Date().toISOString(), 'hand');
+  }
+  DB.einsaetze.unshift(e);
+  save(e);
+  return e;
+}
+
+/* Protokollzeit setzen und die verknüpfte Verlaufszeile mitführen */
+function zeitSetzen(e, k, iso, quelle, text){
+  e.zeiten[k] = iso;
+  e.quelle[k] = quelle || 'hand';
+  const i = e.verlauf.findIndex(v => v.m === k);
+  if (!iso) { if (i >= 0) e.verlauf.splice(i, 1); return; }
+  if (i >= 0) { e.verlauf[i].t = iso; if (text) e.verlauf[i].text = text; }
+  else e.verlauf.push({t: iso, text: text || ZEIT_VERLAUF[k], m: k});
+}
+const naechsteZeit = e => ZEITEN.find(([k]) => !e.zeiten[k]);
+const erfasserText = s => s.unterschrift ? [s.unterschrift, s.funktion].filter(Boolean).join(', ') : (s.erfasser || '');
+
+/* ------------------------------------------------------------- Helfer */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const hhmm = iso => { if (!iso) return ''; const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'}); };
+const datum = iso => { if (!iso) return ''; const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'}); };
+const einsatzDatum = e => e.zeiten.alarm || new Date(e.created).toISOString();
+function toast(t, ms){ const el = document.getElementById('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), ms || 2200); }
+function getPath(root, path){ return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), root); }
+function setPath(root, path, val){ const ks = path.split('.'); let o = root; for (let i = 0; i < ks.length - 1; i++) { if (o[ks[i]] == null) o[ks[i]] = {}; o = o[ks[i]]; } o[ks[ks.length - 1]] = val; }
+function rootFor(path){ return path.startsWith('s.') ? [DB.settings, path.slice(2)] : [aktiv(), path.slice(2)]; }
+
+/* --------------------------------------------- Pflichtangaben prüfen */
+function fehlend(e){
+  const m = [];
+  const keineAnfahrt = e.tart === '9';
+  if (!e.gruppe) m.push(['abschluss','Protokoll für (SEG / EL WR / Wachstation)']);
+  if (!e.meldung) m.push(['zeiten','Einsatzmeldung']);
+  if (!e.stelle) m.push(['zeiten','Einsatzstelle']);
+  if (!e.zeiten.alarm) m.push(['zeiten','Alarmzeit']);
+  if (!keineAnfahrt && !e.zeiten.an) m.push(['zeiten','Zeit „An Einsatzstelle“']);
+  if (!e.zeiten.ende) m.push(['zeiten','Zeit „Ende/Zurück“']);
+  if (!e.art && !e.art81) m.push(['abschluss','Einsatzart (Tarifziffer)']);
+  if (e.art81 && !e.ilsElwr) m.push(['abschluss','ILS-Nummer EL WR']);
+  if (!e.tart) m.push(['abschluss','T-Art (1 / 8 / 9 / 0)']);
+  if (!e.einheiten.length) m.push(['kraefte','Mindestens eine eingesetzte Einheit']);
+  if (!e.ils) m.push(['abschluss', 'ILS-Auftragsnummer']);
+  if (!e.kraefte.length) m.push(['kraefte','Einsatzkräfte']);
+  if (!keineAnfahrt) {
+    const offen = GBU.filter((g, i) => !e.gbu.werte[i]).length;
+    if (offen) m.push(['lage', `Gefährdungsbeurteilung: ${offen} Punkte nicht bewertet`]);
+    GBU.forEach((g, i) => { if (e.gbu.werte[i] >= 2 && !(e.gbu.massn[i] || '').trim()) m.push(['lage', `Maßnahme zu „${g[1]}“`]); });
+    if (e.wetter.luft === '') m.push(['lage','Lufttemperatur']);
+  }
+  if (!e.durchgefuehrt) m.push(['abschluss','Einsatz durchgeführt (mit / ohne Erfolg / abgebrochen)']);
+  if (!e.abrechnung) m.push(['abschluss','Einsatzabrechnung (ZAST / Kreisverband / ohne)']);
+  if (!e.unterschrift) m.push(['abschluss','Name für Unterschrift']);
+  return m;
+}
+
+/* ------------------------------------------------------- Home Assistant */
+const haAktiv = () => !ARTEFAKT && !WEB && !!DB.settings.ha.token;
+const haBase = () => (DB.settings.ha.url || '').replace(/\/+$/, '');
+async function haFetch(path, opts = {}){
+  const r = await fetch(haBase() + path, Object.assign({}, opts, {headers: {'Authorization': 'Bearer ' + DB.settings.ha.token, 'Content-Type': 'application/json'}}));
+  if (!r.ok) throw new Error('HA ' + r.status);
+  const t = await r.text();
+  return t ? JSON.parse(t) : null;
+}
+async function haState(id){ try { return await haFetch('/api/states/' + id); } catch(e) { return null; } }
+function haCall(domain, service, data, mitAntwort){ return haFetch(`/api/services/${domain}/${service}${mitAntwort ? '?return_response' : ''}`, {method:'POST', body: JSON.stringify(data)}); }
+function tsVon(st){ const t = st && st.attributes && st.attributes.timestamp; return (typeof t === 'number' && t > 946684800) ? t : null; }
+
+async function haLesen(){
+  if (!haAktiv()) return;
+  const ids = ['input_boolean.einsatzdoku_offen','input_datetime.einsatzdoku_alarm','input_datetime.einsatzdoku_ausruecken','input_datetime.einsatzdoku_an','input_datetime.einsatzdoku_ende','input_text.einsatzdoku_meldung','input_text.einsatzdoku_einsatzstelle'];
+  const st = await Promise.all(ids.map(haState));
+  if (!st[0]) { UI.haErr = 'Home Assistant nicht erreichbar'; return; }
+  UI.haErr = null;
+  UI.ha = {offen: st[0].state === 'on', alarmTs: tsVon(st[1]), ausruecken: tsVon(st[2]), an: tsVon(st[3]), ende: tsVon(st[4]),
+    meldung: st[5] && !['unknown','unavailable'].includes(st[5].state) ? st[5].state : '',
+    stelle: st[6] && !['unknown','unavailable'].includes(st[6].state) ? st[6].state : ''};
+  // Automatische Zeiten in den passenden Einsatz übernehmen (nur leere Felder)
+  const e = UI.ha.alarmTs && DB.einsaetze.find(x => x.haAlarmTs === UI.ha.alarmTs && !x.abgeschlossen);
+  if (e) {
+    let geaendert = false;
+    for (const k of ['ausruecken','an','ende']) {
+      if (UI.ha[k] && !e.zeiten[k]) { zeitSetzen(e, k, new Date(UI.ha[k] * 1000).toISOString(), 'ha'); geaendert = true; }
+    }
+    if (UI.ha.meldung && !e.meldung) { e.meldung = UI.ha.meldung; geaendert = true; }
+    if (UI.ha.stelle && !e.stelle) { e.stelle = UI.ha.stelle; geaendert = true; }
+    if (geaendert) { save(e); toast('Zeiten aus Home Assistant übernommen'); }
+  }
+}
+async function haWetter(e){
+  const w = await haState('weather.forecast_home');
+  if (!w) { toast('Wetter nicht erreichbar'); return; }
+  const a = w.attributes || {};
+  if (a.temperature != null) e.wetter.luft = String(Math.round(a.temperature));
+  if (a.wind_speed != null) {
+    const unit = (a.wind_speed_unit || 'km/h').toLowerCase();
+    const ms = unit.includes('m/s') ? a.wind_speed : a.wind_speed / 3.6;
+    e.wetter.wind = binFuer(ms);
+  }
+  save(e); render(); toast('Wetter übernommen');
+}
+function binFuer(ms){ const g = [0.2, 0.5, 1, 2.5, 4, 6, 12]; const v = ['0.0','0.2','0.5','1.0','2.5','4.0','6.0']; for (let i = 0; i < g.length; i++) if (ms < g[i]) return v[i]; return '12.0'; }
+async function haPosition(e){
+  const t = await haState('device_tracker.sm_s921b');
+  const a = t && t.attributes;
+  if (!a || a.latitude == null) { toast('Position nicht verfügbar'); return; }
+  const pos = `GPS ${a.latitude.toFixed(5)}, ${a.longitude.toFixed(5)}`;
+  e.stelle = e.stelle ? `${e.stelle} (${pos})` : pos;
+  save(e); render();
+}
+
+/* Abgleich über die To-do-Liste in Home Assistant */
+const MARKE = id => `[ed-${id}]`;
+function zusammenfassung(e){ return `Einsatz ${datum(einsatzDatum(e))} ${hhmm(einsatzDatum(e))} – ${(e.meldung || 'ohne Meldung').slice(0, 60)} ${MARKE(e.id)}`; }
+async function todoHolen(){
+  const r = await haCall('todo', 'get_items', {entity_id: DB.settings.ha.todo, status: ['needs_action', 'completed']}, true);
+  const sr = r && (r.service_response || r);
+  const liste = sr && sr[DB.settings.ha.todo];
+  return (liste && liste.items) || [];
+}
+let pushTimer = null;
+function planePush(){ if (!haAktiv()) return; clearTimeout(pushTimer); pushTimer = setTimeout(abgleich, 3000); }
+async function abgleich(){
+  if (!haAktiv() || abgleich.laeuft) return;
+  abgleich.laeuft = true;
+  try {
+    await haLesen();
+    const items = await todoHolen();
+    // Holen: neuere Stände von anderen Geräten übernehmen
+    for (const it of items) {
+      const m = /\[ed-([a-z0-9]+)\]/.exec(it.summary || '');
+      if (!m || !it.description) continue;
+      let r; try { r = JSON.parse(it.description); } catch(err) { continue; }
+      const l = DB.einsaetze.find(x => x.id === m[1]);
+      if (!l) { r.dirty = false; DB.einsaetze.push(r); }
+      else if (!l.dirty && (r.updatedAt || 0) > (l.updatedAt || 0)) Object.assign(l, r, {dirty: false});
+    }
+    // Senden: lokale Änderungen
+    for (const e of DB.einsaetze.filter(x => x.dirty)) {
+      const kopie = Object.assign({}, e); delete kopie.dirty;
+      const vorhanden = items.find(it => (it.summary || '').includes(MARKE(e.id)));
+      const daten = {entity_id: DB.settings.ha.todo, description: JSON.stringify(kopie)};
+      if (vorhanden) await haCall('todo', 'update_item', Object.assign(daten, {item: vorhanden.uid, rename: zusammenfassung(e), status: e.abgeschlossen ? 'completed' : 'needs_action'}));
+      else await haCall('todo', 'add_item', Object.assign(daten, {item: zusammenfassung(e)}));
+      e.dirty = false;
+    }
+    DB.einsaetze.sort((a, b) => new Date(einsatzDatum(b)) - new Date(einsatzDatum(a)));
+    localStorage.setItem(LS_KEY, JSON.stringify(DB));
+    UI.syncAt = new Date(); UI.haErr = null;
+  } catch(err) {
+    UI.haErr = 'Abgleich offline – wird nachgeholt';
+  } finally {
+    abgleich.laeuft = false;
+    renderKopf();
+    if (UI.view === 'liste') render();
+  }
+}
+async function todoLoeschen(e){
+  if (!haAktiv()) return;
+  try { const items = await todoHolen(); const it = items.find(x => (x.summary || '').includes(MARKE(e.id))); if (it) await haCall('todo', 'remove_item', {entity_id: DB.settings.ha.todo, item: it.uid}); } catch(err) {}
+}
+
+/* ------------------------------------------------------------ Rendering */
+function render(){
+  renderKopf();
+  const v = document.getElementById('view');
+  const tabs = document.getElementById('tabs');
+  if (UI.view === 'einsatz' && aktiv()) {
+    tabs.hidden = false; tabs.innerHTML = renderTabs(aktiv());
+    const ansichten = {zeiten: viewZeiten, lage: viewLage, kraefte: viewKraefte, verlauf: viewVerlauf, abschluss: viewAbschluss};
+    if (!ansichten[UI.tab]) UI.tab = 'zeiten';
+    v.innerHTML = ansichten[UI.tab](aktiv());
+  } else if (UI.view === 'einstellungen') {
+    tabs.hidden = true; v.innerHTML = viewEinstellungen();
+    if (WEB) qrZeichnen();
+  } else {
+    UI.view = 'liste'; tabs.hidden = true; v.innerHTML = viewListe();
+  }
+  renderModal();
+  wachHalten(UI.view === 'einsatz' && !!aktiv() && !aktiv().abgeschlossen);
+}
+function renderKopf(){
+  const h = document.getElementById('hdr');
+  const syncTxt = WEB ? 'nur auf diesem Handy gespeichert' : ARTEFAKT ? (SPEICHER.fehler ? esc(SPEICHER.fehler) : SPEICHER.bereit ? (DB.einsaetze.some(x => x.cloudOffen) ? 'wird gespeichert …' : 'in deinem Claude-Konto gespeichert') : SPEICHER.geprueft ? 'nur in diesem Gerät' : 'wird geladen …') : haAktiv() ? (UI.haErr ? esc(UI.haErr) : (UI.syncAt ? 'abgeglichen ' + UI.syncAt.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'}) : 'Home Assistant …')) : 'nur im Gerät';
+  if (UI.view === 'einsatz' && aktiv()) {
+    const e = aktiv();
+    const min = e.zeiten.alarm ? Math.max(0, Math.floor((Date.now() - new Date(e.zeiten.alarm)) / 60000)) : null;
+    h.innerHTML = `<button data-a="zurueck" aria-label="Zurück">‹</button>
+      <div style="flex:1;min-width:0"><h1>${esc(e.meldung || 'Einsatz')}</h1>
+      <div class="sub">${e.zeiten.alarm ? 'Alarm ' + hhmm(e.zeiten.alarm) + (min !== null && !e.zeiten.ende ? ' · vor ' + min + ' min' : '') : ''} · <span class="sync">${syncTxt}</span></div></div>`;
+  } else if (UI.view === 'einstellungen') {
+    h.innerHTML = `<button data-a="zurueck" aria-label="Zurück">‹</button><h1>Einstellungen</h1>`;
+  } else {
+    h.innerHTML = `<div style="flex:1"><h1>Einsatzdoku Wasserwacht</h1><div class="sub sync">${syncTxt}</div></div><button data-a="einstellungen">Einstellungen</button>`;
+  }
+}
+function renderTabs(e){
+  const f = fehlend(e); const n = t => f.filter(x => x[0] === t).length;
+  const tabs = [['zeiten','Zeiten'],['lage','Lage'],['kraefte','Kräfte'],['verlauf','Verlauf'],['abschluss','Abschluss']];
+  return tabs.map(([k, t]) => `<button data-a="tab" data-v="${k}" class="${UI.tab === k ? 'on' : ''}">${t}${n(k) && e.zeiten.alarm ? `<span class="dot">${n(k)}</span>` : ''}</button>`).join('');
+}
+
+/* Liste */
+function viewListe(){
+  let h = '';
+  if (UI.ha && UI.ha.offen && UI.ha.alarmTs && !DB.einsaetze.some(x => x.haAlarmTs === UI.ha.alarmTs)) {
+    const t = new Date(UI.ha.alarmTs * 1000);
+    h += `<div class="alarmbanner"><div style="font-size:14px;opacity:.9">Neuer Alarm aus Home Assistant</div>
+      <div style="font-size:24px;font-weight:700">${hhmm(t.toISOString())} Uhr</div>
+      <div>${esc(UI.ha.meldung || '')}${UI.ha.stelle ? ' · ' + esc(UI.ha.stelle) : ''}</div>
+      <button class="btn" data-a="neu-ha">Einsatz anlegen</button></div>`;
+  }
+  h += `<button class="btn primary block" data-a="neu" style="margin-bottom:14px;min-height:64px;font-size:19px">+ Neuer Einsatz</button>`;
+  const s = DB.settings;
+  if (!s.unterschrift) h += `<div class="card"><h2>Einmal einrichten</h2>
+    <p class="hint" style="margin-top:0">Dein Handy gehört dir – deshalb trägst du Name, Funktion und Einheit nur einmal ein. Danach stehen sie automatisch in jedem Protokoll, auch als Erfasser der Gefährdungsbeurteilung.</p>
+    <label class="f" for="ob-name">Dein Name</label><input id="ob-name" autocomplete="name" placeholder="Vorname Nachname">
+    <label class="f" for="ob-funktion">Deine Funktion</label><select id="ob-funktion"><option value="">bitte wählen</option>${FUNKTIONEN.map(f => `<option>${esc(f)}</option>`).join('')}</select>
+    <label class="f" for="ob-einheit">Deine Einheit</label><select id="ob-einheit"><option value="">keine feste Einheit</option>${s.fahrzeuge.map(f => `<option>${esc(f.name)}</option>`).join('')}</select>
+    <button class="btn primary block" data-a="ob-speichern" style="margin-top:12px">Speichern</button></div>`;
+  else if (!s.roster.length) h += `<div class="note">Tipp: Unter <b>Einstellungen</b> deine SEG-Kräfte einmal eintragen. Im Einsatz tippst du sie dann nur noch an.</div>`;
+  h += '<div class="list">';
+  for (const e of DB.einsaetze) {
+    const f = fehlend(e).length;
+    h += `<button class="card" data-a="oeffnen" data-v="${e.id}">
+      <div style="font-weight:700">${esc(e.meldung || 'Einsatz ohne Meldung')}</div>
+      <div class="meta">${datum(einsatzDatum(e))} · ${hhmm(einsatzDatum(e))} Uhr${e.stelle ? ' · ' + esc(e.stelle) : ''}</div>
+      <div style="margin-top:6px">${e.abgeschlossen ? '<span class="badge" style="background:var(--green-bg);color:var(--green);margin:0">abgeschlossen</span>' : f ? `<span class="badge" style="background:var(--red-bg);color:var(--red);margin:0">${f} Angaben fehlen</span>` : '<span class="badge" style="background:var(--green-bg);color:var(--green);margin:0">vollständig</span>'}</div>
+    </button>`;
+  }
+  if (!DB.einsaetze.length) h += `<p class="hint">Noch keine Einsätze.</p>`;
+  return h + '</div>';
+}
+
+/* Tab Zeiten: Einsatzdaten und die sechs Protokollzeiten,
+   oben der nächste Schritt als großer Knopf */
+function viewZeiten(e){
+  const nx = naechsteZeit(e);
+  let h = `<div class="card"><h2>Einsatz</h2>
+    <label class="f" for="in-meldung">Einsatzmeldung</label><input id="in-meldung" data-bind="e.meldung" value="${esc(e.meldung)}" placeholder="z. B. Wasser 1 – Person im Wasser">
+    <label class="f" for="in-stelle">Einsatzstelle</label><input id="in-stelle" data-bind="e.stelle" value="${esc(e.stelle)}" placeholder="Ort, Gewässer, Zufahrt">
+    ${haAktiv() ? `<div class="row" style="margin-top:8px"><button class="btn small" data-a="position">Meine Position eintragen</button><button class="btn small" data-a="sync">Abgleich</button></div>` : ''}
+  </div>`;
+  h += `<div class="card"><h2>Zeiten fürs Protokoll</h2>
+    ${nx ? `<button class="btn primary block jetzt" data-a="zeit" data-v="${nx[0]}">Jetzt: ${esc(nx[1])}</button>` : '<div class="ok" style="margin-bottom:10px">Alle Zeiten erfasst</div>'}
+    <div class="zgrid">${ZEITEN.map(([k, t]) => { const v = e.zeiten[k]; return `<button class="zr ${v ? '' : 'leer'}" data-a="zeit" data-v="${k}"><span>${esc(t)}${e.quelle[k] === 'ha' ? '<span class="badge">HA</span>' : ''}</span><b>${v ? hhmm(v) : '–'}</b></button>`; }).join('')}</div>
+    <button class="btn small block ${e.uebergabeRD ? 'blue' : ''}" data-a="toggle" data-p="e.uebergabeRD" style="margin-top:8px">${e.uebergabeRD ? '✓ Übergabe an Rettungsdienst' : 'Übergabe an Rettungsdienst? Antippen = ja'}</button>
+    <p class="hint">Leere Zeit antippen = jetzt. Gesetzte Zeit antippen = ändern. Übersprungene Schritte bleiben einfach leer. Jede Zeit steht automatisch auch im Verlauf.</p></div>`;
+  return h;
+}
+
+/* Tab Verlauf: Ereignisse antippen, Details ergänzen, chronologische Liste */
+function viewVerlauf(e){
+  let h = `<div class="card"><h2>Ereignis eintragen</h2><div class="chips">${EREIGNISSE.map((x, i) => `<button class="chip" data-a="ev" data-v="${i}">${esc(x.t)}</button>`).join('')}<button class="chip add" data-a="ev-frei">+ Eigener Eintrag</button></div>
+    <p class="hint">Die Uhrzeit wird beim Antippen gesetzt. Danach ergänzt du in Ruhe, wer was macht – gern per Mikrofon. Keine Namen von Betroffenen.</p></div>`;
+  h += `<div class="card"><h2>Einsatzverlauf (${e.verlauf.length})</h2>`;
+  const sortiert = e.verlauf.map((v, i) => [v, i]).sort((a, b) => new Date(a[0].t) - new Date(b[0].t));
+  for (const [v, i] of sortiert) {
+    h += `<button class="vl2" data-a="eintrag" data-v="${i}"><span class="vt">${hhmm(v.t)}</span><span class="vx">${esc(v.text || '…')}${v.m ? '<span class="badge">Protokollzeit</span>' : ''}</span></button>`;
+  }
+  if (!e.verlauf.length) h += `<p class="hint">Noch keine Einträge.</p>`;
+  if (e.verlauf.length > 21) h += `<div class="warn">Mehr als 21 Einträge: der Rest kommt automatisch auf ein Extrablatt im PDF.</div>`;
+  return h + `<p class="hint">Eintrag antippen, um Uhrzeit oder Text zu ändern.</p></div>`;
+}
+
+/* Tab Lage: Wetter + GBU */
+function viewLage(e){
+  const w = e.wetter;
+  const stepper = (p, val, lbl) => `<div><label class="f" for="in-${p}">${lbl}</label><div class="step"><button data-a="step" data-p="${p}" data-v="-1" aria-label="Ein Grad weniger">−</button><input id="in-${p}" data-bind="${p}" inputmode="decimal" value="${esc(val)}" placeholder="–"><span class="einheit">°C</span><button data-a="step" data-p="${p}" data-v="1" aria-label="Ein Grad mehr">+</button></div></div>`;
+  const bins = (p, val) => `<div class="seg">${BINS.map(([v, t]) => `<button data-a="setze" data-p="${p}" data-v="${v}" class="${val === v ? 'on' : ''}">${t}</button>`).join('')}</div>`;
+  let h = `<div class="card"><h2>Wetter</h2>
+    ${haAktiv() ? `<button class="btn small" data-a="wetter" style="margin-bottom:6px">Luft und Wind aus Home Assistant</button>` : ''}
+    <div class="temps">${stepper('e.wetter.luft', w.luft, 'Lufttemperatur °C')}${stepper('e.wetter.wasser', w.wasser, 'Wassertemperatur °C')}</div>
+    <label class="f">Strömung in m/s</label>${bins('e.wetter.stroemung', w.stroemung)}
+    <label class="f">Sicht in m</label>${bins('e.wetter.sicht', w.sicht)}
+    <label class="f">Wind in m/s</label>${bins('e.wetter.wind', w.wind)}
+    <label class="f">Wetterlage (Bewölkung × Niederschlag)</label>
+    <div class="wgrid"><span></span>${WOLKEN.map(c => `<span style="text-align:center">${c[2]}</span>`).join('')}
+    ${NIEDER.map(r => `<span>${r[2]}</span>` + WOLKEN.map(c => { const code = c[0] + r[0]; return `<button data-a="setze" data-p="e.wetter.symbol" data-v="${code}" class="${w.symbol === code ? 'on' : ''}" aria-label="${c[2]}, ${r[2]}">${c[1]}${r[0] === '1' ? '' : r[1]}</button>`; }).join('')).join('')}</div>
+  </div>`;
+  const offen = GBU.filter((g, i) => !e.gbu.werte[i]).length;
+  h += `<div class="card"><h2>Gefährdungsbeurteilung · antippen = gering → mittel → hoch</h2>
+    ${offen ? `<button class="btn small" data-a="gbu-rest" style="margin-bottom:10px">Übrige ${offen} auf „gering“ setzen</button>` : '<div class="ok" style="margin-bottom:10px">Alle Punkte bewertet</div>'}
+    <div class="gbu">${GBU.map((g, i) => { const l = e.gbu.werte[i] || 0; return `<button class="gt l${l}" data-a="gbu" data-v="${i}"><b>${g[0]}</b> ${esc(g[1])}<small>${esc(g[2])}</small><span class="lv">${l ? STUFEN[l] : 'nicht bewertet'}</span></button>`; }).join('')}</div>`;
+  const kritisch = GBU.map((g, i) => [g, i]).filter(([g, i]) => (e.gbu.werte[i] || 0) >= 2);
+  if (kritisch.length) {
+    h += `<h2 style="margin-top:16px">Maßnahmen</h2>`;
+    for (const [g, i] of kritisch) {
+      const vorschl = (MASSN_SPEZ[i] || []).concat(MASSN_ALLG);
+      h += `<div style="margin-bottom:12px"><div style="font-weight:700;color:${e.gbu.werte[i] === 3 ? 'var(--red)' : 'var(--yellow)'}">${g[0]} ${esc(g[1])} – ${STUFEN[e.gbu.werte[i]]}${e.gbu.werte[i] === 3 ? ': kein Einsatz ohne Schutzmaßnahmen!' : ''}</div>
+        <div class="chips" style="margin:6px 0">${vorschl.map(m => `<button class="chip" data-a="massn" data-i="${i}" data-v="${esc(m)}">${esc(m)}</button>`).join('')}</div>
+        <input data-bind="e.gbu.massn.${i}" value="${esc(e.gbu.massn[i] || '')}" placeholder="Maßnahme (oder per Mikrofon sprechen)"></div>`;
+    }
+  }
+  if ((e.gbu.werte[4] || 0) >= 2) h += `<div class="warn">Psychische Belastung: an PSNV denken.</div>`;
+  h += `<label class="f">Erfasser / Funktion</label><input data-bind="e.gbu.erfasser" value="${esc(e.gbu.erfasser)}" placeholder="Name, Funktion">
+    <p class="hint">Uhrzeit der Beurteilung: ${e.gbu.zeit ? hhmm(e.gbu.zeit) : 'wird beim ersten Antippen gesetzt'}</p></div>`;
+  return h;
+}
+
+/* Tab Kräfte */
+function viewKraefte(e){
+  const da = new Set(e.kraefte.map(k => k.name));
+  let h = `<div class="card"><h2>Einsatzkräfte · antippen = ist da</h2><div class="chips">`;
+  h += DB.settings.roster.filter(r => !da.has(r.name)).map((r, i) => `<button class="chip" data-a="kraft-add" data-v="${esc(r.name)}">${esc(r.name)}${r.funktion ? ' · ' + esc(r.funktion) : ''}</button>`).join('');
+  h += `</div><div class="row" style="margin-top:10px"><input id="neukraft" placeholder="Andere Person – Name"><button class="btn small" data-a="kraft-neu" style="flex:0 0 auto">+ Hinzufügen</button></div><div style="margin-top:10px">`;
+  e.kraefte.forEach((k, i) => {
+    h += `<div class="item"><div><div class="nm">${esc(k.name)}</div><select data-bind="e.kraefte.${i}.funktion" style="min-height:40px;padding:6px 8px;margin-top:4px"><option value="">Funktion wählen</option>${(FUNKTIONEN.includes(k.funktion) || !k.funktion ? FUNKTIONEN : FUNKTIONEN.concat([k.funktion])).map(f => `<option ${k.funktion === f ? 'selected' : ''}>${esc(f)}</option>`).join('')}</select></div>
+      <button class="tm ${k.an ? '' : 'leer'}" data-a="t-edit" data-p="e.kraefte.${i}.an">${k.an ? hhmm(k.an) : 'an'}</button>
+      <button class="tm ${k.ab ? '' : 'leer'}" data-a="t-jetzt" data-p="e.kraefte.${i}.ab">${k.ab ? hhmm(k.ab) : 'ab'}</button>
+      <button class="x" data-a="weg" data-p="e.kraefte" data-v="${i}" aria-label="Entfernen">✕</button></div>`;
+  });
+  if (e.kraefte.length > 10) h += `<div class="warn">Das Protokoll hat 10 Zeilen für Einsatzkräfte. Weitere kommen auf ein Extrablatt.</div>`;
+  h += `</div></div>`;
+
+  const vorhandene = new Set(e.einheiten.map(u => u.name));
+  h += `<div class="card"><h2>Eingesetzte Einheiten</h2><div class="chips">`;
+  h += DB.settings.fahrzeuge.filter(f => !vorhandene.has(f.name)).map(f => `<button class="chip" data-a="einheit-add" data-v="${esc(f.name)}">${esc(f.art)} · ${esc(f.name)}</button>`).join('');
+  h += `<button class="chip add" data-a="einheit-neu">+ Einheit</button></div>`;
+  e.einheiten.forEach((u, i) => {
+    const staerke = u.staerke !== '' && u.staerke != null ? u.staerke : (u.eigene ? e.kraefte.length : '');
+    h += `<div style="border-top:1px solid var(--line);margin-top:10px;padding-top:10px">
+      <div class="row"><select data-bind="e.einheiten.${i}.art" style="flex:0 0 110px">${EINHEIT_ARTEN.map(a => `<option ${u.art === a ? 'selected' : ''}>${a}</option>`).join('')}</select><input data-bind="e.einheiten.${i}.name" value="${esc(u.name)}" placeholder="Name / Funkrufname"><button class="x" data-a="weg" data-p="e.einheiten" data-v="${i}" aria-label="Entfernen" style="flex:0 0 40px">✕</button></div>
+      <div class="row" style="margin-top:6px"><button class="tm ${u.an ? '' : 'leer'}" data-a="t-jetzt" data-p="e.einheiten.${i}.an">${u.an ? 'an ' + hhmm(u.an) : 'an'}</button><button class="tm ${u.ab ? '' : 'leer'}" data-a="t-jetzt" data-p="e.einheiten.${i}.ab">${u.ab ? 'ab ' + hhmm(u.ab) : 'ab'}</button><input data-bind="e.einheiten.${i}.staerke" value="${esc(staerke)}" placeholder="Stärke" inputmode="numeric" aria-label="Personalstärke"></div>
+      <input data-bind="e.einheiten.${i}.kennz" value="${esc(u.kennz)}" placeholder="Kennzeichen" style="margin-top:6px"></div>`;
+  });
+  h += `</div>`;
+
+  h += `<div class="card"><h2>Weitere Führungskräfte / Erreichbarkeiten</h2><div class="chips">${FK_ORGS.map(o => `<button class="chip" data-a="fk-add" data-v="${esc(o)}">+ ${esc(o)}</button>`).join('')}</div>`;
+  e.fk.forEach((f, i) => {
+    h += `<div style="border-top:1px solid var(--line);margin-top:10px;padding-top:10px"><div class="row"><input data-bind="e.fk.${i}.org" value="${esc(f.org)}" placeholder="Organisation"><button class="x" data-a="weg" data-p="e.fk" data-v="${i}" style="flex:0 0 40px">✕</button></div>
+      <div class="row" style="margin-top:6px"><input data-bind="e.fk.${i}.funktion" value="${esc(f.funktion)}" placeholder="Funktion"><input data-bind="e.fk.${i}.funk" value="${esc(f.funk)}" placeholder="Funkrufname"></div>
+      <input data-bind="e.fk.${i}.tel" value="${esc(f.tel)}" placeholder="TMO / DMO / Handy" style="margin-top:6px"></div>`;
+  });
+  if (e.fk.length >= 5) h += `<div class="warn">Das Protokoll hat 5 Zeilen für Führungskräfte.</div>`;
+  return h + `</div>`;
+}
+
+/* Tab Abschluss: erst ausfüllen, dann sehen, was fehlt, dann Protokolle */
+function viewAbschluss(e){
+  const f = fehlend(e);
+  let h = `<div class="card"><h2>Protokoll für</h2><div class="seg">${['SEG','EL WR','Wachstation'].map(g => `<button data-a="setze" data-p="e.gruppe" data-v="${g}" class="${e.gruppe === g ? 'on' : ''}">${g}</button>`).join('')}</div></div>`;
+  h += `<div class="card"><h2>Einsatzart</h2><div class="seg" style="flex-direction:column">${EINSATZARTEN.map(a => `<button data-a="art" data-v="${a.v}" class="${e.art === a.v ? 'on' : ''}" style="text-align:left">${a.t} <span style="opacity:.75;font-size:13px">· ${a.abr}</span></button>`).join('')}</div>
+    <div class="row" style="margin-top:8px"><button class="btn small ${e.art59 ? 'blue' : ''}" data-a="toggle" data-p="e.art59">${e.art59 ? '✓ ' : ''}59 – Sondereinsatzgerät</button><button class="btn small ${e.art81 ? 'blue' : ''}" data-a="toggle" data-p="e.art81">${e.art81 ? '✓ ' : ''}81 – EL WR</button></div>
+    ${e.art81 ? `<label class="f">ILS-Nummer EL WR</label><input data-bind="e.ilsElwr" value="${esc(e.ilsElwr)}" inputmode="numeric"><div class="seg" style="margin-top:8px">${['Dienstfahrzeug','Privatfahrzeug'].map(x => `<button data-a="setze" data-p="e.fahrzeug" data-v="${x}" class="${e.fahrzeug === x ? 'on' : ''}">${x}</button>`).join('')}</div>` : ''}
+  </div>`;
+  h += `<div class="card"><h2>T-Art und ILS-Auftragsnummer</h2><div class="seg" style="flex-direction:column">${T_ARTEN.map(t => `<button data-a="tart" data-v="${t.v}" class="${e.tart === t.v ? 'on' : ''}" style="text-align:left"><b>${t.t}</b><br><span style="font-size:13px;opacity:.85">${t.d}</span></button>`).join('')}</div>
+    <label class="f" for="in-ils">ILS-Auftragsnummer</label><input id="in-ils" data-bind="e.ils" value="${esc(e.ils || '')}" inputmode="numeric" placeholder="von der Leitstelle">
+    <p class="hint">Gilt für alle eingesetzten Einheiten im Protokoll.</p></div>`;
+  h += `<div class="card"><h2>Ergebnis und Abrechnung</h2>
+    <label class="f">Einsatz durchgeführt</label><div class="seg">${['mit Erfolg','ohne Erfolg','abgebrochen'].map(x => `<button data-a="setze" data-p="e.durchgefuehrt" data-v="${x}" class="${e.durchgefuehrt === x ? 'on' : ''}">${x}</button>`).join('')}</div>
+    <label class="f">Einsatzabrechnung</label><div class="seg">${['ZAST','Kreisverband','ohne'].map(x => `<button data-a="setze" data-p="e.abrechnung" data-v="${x}" class="${e.abrechnung === x ? 'on' : ''}">${x}</button>`).join('')}</div>
+    <div class="row" style="margin-top:10px"><button class="btn small ${e.anhang.patient ? 'blue' : ''}" data-a="toggle" data-p="e.anhang.patient">${e.anhang.patient ? '✓ ' : ''}Patientenprotokoll beigefügt</button><button class="btn small ${e.anhang.tauch ? 'blue' : ''}" data-a="toggle" data-p="e.anhang.tauch">${e.anhang.tauch ? '✓ ' : ''}Taucheinsatzprotokoll</button></div>
+    <label class="f">Name für Unterschrift</label><input data-bind="e.unterschrift" value="${esc(e.unterschrift)}">
+    ${versandHinweis(e)}
+  </div>`;
+  h += `<div class="card"><h2>Was noch fehlt</h2>${f.length ? `<ul class="miss">${f.map(x => `<li data-a="tab" data-v="${x[0]}">${esc(x[1])} <span style="font-weight:400">→ ${({zeiten:'Zeiten', lage:'Lage', kraefte:'Kräfte', verlauf:'Verlauf', abschluss:'hier oben'})[x[0]]}</span></li>`).join('')}</ul>` : '<div class="ok">Alles Nötige ist erfasst.</div>'}</div>`;
+  h += `<div class="card"><h2>Protokolle</h2>
+    <button class="btn primary block" data-a="pdf-protokoll">Einsatzprotokoll als PDF</button>
+    ${pdfFehler === 'VORLAGE' ? vorlageWaehler('Für das Protokoll braucht die App einmal das offizielle Formular. Tippe hier und wähle die Datei „Einsatzprotokoll“ (PDF) aus, z. B. aus deinen Downloads. Die App merkt sie sich.') : pdfFehler ? `<div class="warn">Letzter Fehler beim Protokoll: ${esc(pdfFehler)}</div>` : ''}
+    <button class="btn blue block" data-a="pdf-gbu" style="margin-top:8px">Gefährdungsbeurteilung als PDF</button>
+    ${WEB && navigator.canShare ? `<div class="row" style="margin-top:8px"><button class="btn small" data-a="pdf-protokoll" data-v="teilen">Protokoll teilen</button><button class="btn small" data-a="pdf-gbu" data-v="teilen">GBU teilen</button></div>` : ''}
+    <p class="hint">Das Protokoll wird in das offizielle Formular (Version 2.2) eingetragen und bleibt danach weiter ausfüllbar. Patientendaten trägst du – falls nötig – von Hand ein.</p>
+    <button class="btn block" data-a="abschliessen" style="margin-top:12px">${e.abgeschlossen ? 'Wieder öffnen' : 'Einsatz abschließen'}</button>
+    <button class="btn block small" data-a="loeschen" style="margin-top:8px;color:var(--red)">Einsatz löschen</button></div>`;
+  return h;
+}
+function versandHinweis(e){
+  if (e.tart === '1') return `<div class="warn">T-Art 1 (abrechnungsfähig): Patientendaten sind nötig. Die trägst du von Hand auf dem Papier ein. Versand nur per Post oder über die BRK-interne Mail des Kreisverbands.</div>`;
+  if (['0','8','9'].includes(e.tart)) return `<div class="note">T-Art ${e.tart}: Nur für die Statistik, ohne Patientendaten. Versand per Mail ist erlaubt, auch vom Privatrechner.</div>`;
+  return '';
+}
+
+/* Einstellungen */
+function viewEinstellungen(){
+  const s = DB.settings;
+  const roster = s.roster.map(r => r.name + (r.funktion ? '; ' + r.funktion : '')).join('\n');
+  const fz = s.fahrzeuge.map(f => [f.art, f.name, f.kennz].join('; ')).join('\n');
+  return `<div class="card"><h2>Stammdaten</h2>
+    <div class="grid2"><div><label class="f">KWW</label><input data-bind="s.kww" value="${esc(s.kww)}"></div><div><label class="f">KWW-Nummer</label><input data-bind="s.kwwNr" value="${esc(s.kwwNr)}"></div>
+    <div><label class="f">Ortsgruppe</label><input data-bind="s.og" value="${esc(s.og)}"></div><div><label class="f">OG-Nummer</label><input data-bind="s.ogNr" value="${esc(s.ogNr)}"></div></div>
+    <label class="f">Standard-Protokoll</label><div class="seg">${['SEG','EL WR','Wachstation'].map(g => `<button data-a="setze-s" data-p="s.gruppe" data-v="${g}" class="${s.gruppe === g ? 'on' : ''}">${g}</button>`).join('')}</div>
+    </div>
+  <div class="card"><h2>Du</h2>
+    <label class="f" for="s-name">Dein Name (Unterschrift und Erfasser)</label><input id="s-name" data-bind="s.unterschrift" value="${esc(s.unterschrift)}">
+    <label class="f" for="s-funktion">Deine Funktion</label><select id="s-funktion" data-bind="s.funktion"><option value="">bitte wählen</option>${FUNKTIONEN.map(f => `<option ${s.funktion === f ? 'selected' : ''}>${esc(f)}</option>`).join('')}</select>
+    <label class="f" for="s-einheit">Deine Einheit (kommt automatisch in jeden Einsatz)</label><select id="s-einheit" data-eigene><option value="">keine feste Einheit</option>${s.fahrzeuge.map(f => `<option ${s.eigeneEinheit.name === f.name ? 'selected' : ''}>${esc(f.name)}</option>`).join('')}</select>
+    <p class="hint">Erfasser in der Gefährdungsbeurteilung: ${esc(erfasserText(s)) || '–'}</p></div>
+  <div class="card"><h2>Einsatzkräfte der SEG</h2><p class="hint" style="margin-top:0">Eine Person pro Zeile: <b>Name; Funktion</b>. Funktionen: ${FUNKTIONEN.join(', ')}</p>
+    <textarea id="roster" rows="8">${esc(roster)}</textarea></div>
+  <div class="card"><h2>Fahrzeuge und Boote</h2><p class="hint" style="margin-top:0">Eine pro Zeile: <b>Art; Name/Funkrufname; Kennzeichen</b> – Art ist SEG, Wache, Boot oder EL WR.</p>
+    <textarea id="fahrzeuge" rows="5">${esc(fz)}</textarea>
+    <button class="btn primary block" data-a="listen-speichern" style="margin-top:10px">Listen speichern</button></div>
+  ${WEB ? webKarten() : ARTEFAKT ? `<div class="card"><h2>Speicherort</h2><p class="hint" style="margin-top:0">${SPEICHER.bereit ? 'Deine Einsätze und Listen liegen privat in deinem Claude-Konto. Nur du siehst sie, auf jedem Gerät, auf dem du diese App öffnest.' : 'Gerade nur in diesem Gerät gespeichert, weil das Claude-Konto nicht erreichbar ist.'} Patientendaten nimmt die App nicht auf.</p><p class="hint">Die Verbindung zu Home Assistant (automatische Zeiten) gibt es nur in der Fassung auf Home Assistant.</p></div>` : `<div class="card"><h2>Home Assistant</h2>
+    <label class="f">Langlebiges Zugangstoken</label><input data-bind="s.ha.token" value="${esc(s.ha.token)}" type="password" autocomplete="off" placeholder="Profil → Sicherheit → Langlebige Zugangstoken">
+    <label class="f">To-do-Liste für den Abgleich</label><input data-bind="s.ha.todo" value="${esc(s.ha.todo)}">
+    <label class="f">Adresse von Home Assistant – nur nötig, wenn die App nicht über Home Assistant geöffnet wird</label><input data-bind="s.ha.url" value="${esc(s.ha.url)}" placeholder="leer lassen">
+    <button class="btn block" data-a="ha-test" style="margin-top:10px">Verbindung testen</button>
+    <p class="hint">Ohne Token läuft die App nur im Gerät. Mit Token übernimmt sie Zeiten aus Home Assistant und gleicht die Einsätze ab, damit du das PDF z. B. am PC erzeugen kannst.</p></div>`}
+  <div class="card"><h2>Formular-Vorlage Einsatzprotokoll</h2>
+    ${vorlageGespeichert() ? '<div class="ok">Offizielles Formular ist in der App gespeichert.</div>' : (WEB ? '<p class="hint" style="margin-top:0">Das offizielle Formular (Einsatzprotokoll Wasserwacht, ausfüllbares PDF) bekommst du von deiner Wasserwacht. Einmal auswählen, die App merkt es sich – nur auf diesem Handy.</p>' : '<p class="hint" style="margin-top:0">Noch keine eigene Vorlage gespeichert. Liegt das Formular schon bei der App, braucht es keine.</p>')}
+    ${vorlageWaehler(vorlageGespeichert() ? 'Andere Vorlage wählen (z. B. neue Formularversion)' : 'Offizielles Einsatzprotokoll (PDF) auswählen')}</div>
+  <div class="card"><h2>Sicherung</h2><button class="btn block" data-a="export-json">Alle Einsätze als Datei sichern</button>
+    <p class="hint">App-Version 1.0 · ${DB.einsaetze.length} Einsätze im Gerät</p></div>`;
+}
+
+/* Zeit-Dialog */
+function renderModal(){
+  const m = document.getElementById('modal');
+  if (!UI.modal) { m.hidden = true; return; }
+  if (UI.modal.art === 'eintrag') {
+    // Verlaufseintrag: Uhrzeit und Text in Ruhe ergänzen, großes Textfeld
+    const e = aktiv(); const i = UI.modal.i; const v = e && e.verlauf[i];
+    if (!v) { UI.modal = null; m.hidden = true; return; }
+    m.hidden = false;
+    document.getElementById('sheet').innerHTML = `<h3>${v.m ? esc(ZEITEN.find(z => z[0] === v.m)[1]) + ' · Protokollzeit' : 'Eintrag im Verlauf'}</h3>
+      <div class="row"><label for="etime" style="flex:0 0 auto;color:var(--muted)">Uhrzeit</label><input type="time" id="etime" value="${hhmm(v.t)}" style="font-family:var(--font-display);font-size:24px;font-weight:700"></div>
+      <textarea id="etext" data-bind="e.verlauf.${i}.text" rows="5" style="margin-top:10px" placeholder="${esc(UI.modal.frage || 'Was ist passiert? Wer macht was?')}">${esc(v.text)}</textarea>
+      <p class="hint">Tipp: Mikrofon der Tastatur nutzen. Keine Namen von Betroffenen.</p>
+      <div class="grid2" style="margin-top:10px"><button class="btn" data-a="e-loeschen">${v.m ? 'Zeit löschen' : 'Löschen'}</button><button class="btn primary" data-a="e-fertig">Fertig</button></div>`;
+    if (UI.modal.fokus) { UI.modal.fokus = false; setTimeout(() => { const t = document.getElementById('etext'); if (t) { t.focus(); t.setSelectionRange(t.value.length, t.value.length); } }, 50); }
+    return;
+  }
+  const [root, p] = rootFor(UI.modal.p);
+  const iso = getPath(root, p);
+  m.hidden = false;
+  document.getElementById('sheet').innerHTML = `<h3>${esc(UI.modal.titel)}</h3>
+    <input type="time" id="mzeit" value="${iso ? hhmm(iso) : hhmm(new Date().toISOString())}">
+    <div class="grid3" style="margin-top:12px"><button class="btn" data-a="m-jetzt">Jetzt</button><button class="btn" data-a="m-leer">Leeren</button><button class="btn primary" data-a="m-ok">OK</button></div>
+    <button class="btn block small" data-a="m-zu" style="margin-top:8px">Abbrechen</button>`;
+}
+function zeitAusEingabe(hm, e){
+  const basis = e && e.zeiten.alarm ? new Date(e.zeiten.alarm) : new Date();
+  const [h, mi] = hm.split(':').map(Number);
+  const d = new Date(basis); d.setHours(h, mi, 0, 0);
+  if (e && e.zeiten.alarm && d < new Date(basis.getTime() - 3600000)) d.setDate(d.getDate() + 1);
+  return d.toISOString();
+}
+
+/* ----------------------------------------------------------- Aktionen */
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest('[data-a]');
+  if (!b) { if (ev.target.id === 'modal') { eintragSchliessen(); UI.modal = null; render(); } return; }
+  const a = b.dataset.a, v = b.dataset.v, p = b.dataset.p;
+  const e = aktiv();
+  switch (a) {
+    case 'zurueck': UI.view = UI.view === 'einstellungen' && UI.aktiv ? 'einsatz' : 'liste'; if (UI.view === 'liste') UI.aktiv = null; break;
+    case 'einstellungen': UI.view = 'einstellungen'; break;
+    case 'neu': { const n = neuerEinsatz(null); UI.aktiv = n.id; UI.view = 'einsatz'; UI.tab = 'zeiten'; break; }
+    case 'neu-ha': { const n = neuerEinsatz(UI.ha); UI.aktiv = n.id; UI.view = 'einsatz'; UI.tab = 'zeiten'; await haLesen(); break; }
+    case 'oeffnen': UI.aktiv = v; UI.view = 'einsatz'; UI.tab = 'zeiten'; break;
+    case 'tab': UI.tab = v; window.scrollTo(0, 0); break;
+    case 'zeit': {
+      if (!e.zeiten[v]) { zeitSetzen(e, v, new Date().toISOString(), 'hand'); save(e); if (navigator.vibrate) navigator.vibrate(40); toast(ZEITEN.find(z => z[0] === v)[1] + ' ' + hhmm(e.zeiten[v])); }
+      else UI.modal = {p: 'e.zeiten.' + v, titel: ZEITEN.find(z => z[0] === v)[1], quelleKey: v};
+      break;
+    }
+    case 'eintrag': UI.modal = {art: 'eintrag', i: Number(v)}; break;
+    case 'e-fertig': {
+      const x = e.verlauf[UI.modal.i]; const hm = document.getElementById('etime').value;
+      if (x && hm && hm !== hhmm(x.t)) { const neu = zeitAusEingabe(hm, e); if (x.m) zeitSetzen(e, x.m, neu, 'hand'); else x.t = neu; }
+      eintragSchliessen(); UI.modal = null; save(e); break;
+    }
+    case 'e-loeschen': {
+      if (!bestaetigt(b, 'eintrag' + UI.modal.i, 'Wirklich löschen? Nochmal tippen')) return;
+      const x = e.verlauf[UI.modal.i];
+      if (x && x.m) zeitSetzen(e, x.m, null); else if (x) e.verlauf.splice(UI.modal.i, 1);
+      UI.modal = null; save(e); toast('Gelöscht'); break;
+    }
+    case 'ob-speichern': {
+      const n = document.getElementById('ob-name').value.trim();
+      if (!n) { toast('Bitte deinen Namen eintragen'); return; }
+      const s = DB.settings; s.unterschrift = n; s.funktion = document.getElementById('ob-funktion').value;
+      const fz = s.fahrzeuge.find(f => f.name === document.getElementById('ob-einheit').value);
+      if (fz) s.eigeneEinheit = Object.assign({}, fz);
+      save(); toast('Gespeichert – gilt ab jetzt für jedes Protokoll', 4000); break;
+    }
+    case 't-edit': UI.modal = {p, titel: 'Uhrzeit'}; break;
+    case 't-jetzt': { const [r, pp] = rootFor(p); if (!getPath(r, pp)) { setPath(r, pp, new Date().toISOString()); save(e); } else UI.modal = {p, titel: 'Uhrzeit'}; break; }
+    case 'm-jetzt': case 'm-ok': case 'm-leer': {
+      const [r, pp] = rootFor(UI.modal.p);
+      const val = a === 'm-leer' ? null : a === 'm-jetzt' ? new Date().toISOString() : zeitAusEingabe(document.getElementById('mzeit').value || '00:00', e);
+      if (UI.modal.quelleKey) zeitSetzen(e, UI.modal.quelleKey, val, 'hand');
+      else setPath(r, pp, val);
+      save(e); UI.modal = null; break;
+    }
+    case 'm-zu': UI.modal = null; break;
+    case 'setze': { const [r, pp] = rootFor(p); setPath(r, pp, getPath(r, pp) === v ? '' : v); save(e); break; }
+    case 'setze-s': { setPath(DB.settings, p.slice(2), v); save(); break; }
+    case 'toggle': { const [r, pp] = rootFor(p); setPath(r, pp, !getPath(r, pp)); save(e); break; }
+    case 'step': { const [r, pp] = rootFor(p); const n = parseInt(getPath(r, pp), 10); setPath(r, pp, String((isNaN(n) ? (pp.includes('wasser') ? 12 : 15) : n) + Number(v))); save(e); break; }
+    case 'gbu': { const i = Number(v); const l = e.gbu.werte[i] || 0; e.gbu.werte[i] = l >= 3 ? 1 : l + 1; if (!e.gbu.zeit) e.gbu.zeit = new Date().toISOString(); save(e); break; }
+    case 'gbu-rest': GBU.forEach((g, i) => { if (!e.gbu.werte[i]) e.gbu.werte[i] = 1; }); if (!e.gbu.zeit) e.gbu.zeit = new Date().toISOString(); save(e); break;
+    case 'massn': { const i = b.dataset.i; const alt = (e.gbu.massn[i] || '').trim(); if (!alt.split(', ').includes(v)) e.gbu.massn[i] = alt ? alt + ', ' + v : v; save(e); break; }
+    case 'kraft-add': { const r = DB.settings.roster.find(x => x.name === v); e.kraefte.push({name: v, funktion: r ? r.funktion : '', an: new Date().toISOString(), ab: null}); save(e); break; }
+    case 'kraft-neu': { const n = (document.getElementById('neukraft').value || '').trim(); if (!n) { toast('Erst Namen eingeben'); return; } e.kraefte.push({name: n, funktion: '', an: new Date().toISOString(), ab: null}); save(e); break; }
+    case 'einheit-add': { const f = DB.settings.fahrzeuge.find(x => x.name === v); e.einheiten.push({art: f.art, name: f.name, kennz: f.kennz, an: new Date().toISOString(), ab: null, ils: '', tart: e.tart || '', staerke: ''}); save(e); break; }
+    case 'einheit-neu': e.einheiten.push({art: 'SEG', name: '', kennz: '', an: null, ab: null, ils: '', tart: e.tart || '', staerke: ''}); save(e); break;
+    case 'fk-add': if (e.fk.length < 8) { e.fk.push({org: v, funktion: '', funk: '', tel: ''}); save(e); } break;
+    case 'weg': { if (!bestaetigt(b, p + v)) return; const [r, pp] = rootFor(p); getPath(r, pp).splice(Number(v), 1); save(e); toast('Entfernt'); break; }
+    case 'ev': {
+      const x = EREIGNISSE[Number(v)]; const jetzt = new Date().toISOString(); let i;
+      if (x.einmal && e.zeiten[x.m]) { toast(`${x.t} ist schon erfasst (${hhmm(e.zeiten[x.m])} Uhr)`, 3500); return; }
+      if (navigator.vibrate) navigator.vibrate(30);
+      if (x.m && !e.zeiten[x.m]) { zeitSetzen(e, x.m, jetzt, 'hand', x.t + (x.frage ? ': ' : '')); i = e.verlauf.findIndex(y => y.m === x.m); }
+      else { e.verlauf.push({t: jetzt, text: x.t + (x.frage ? ': ' : '')}); i = e.verlauf.length - 1; }
+      if (x.rd) e.uebergabeRD = true;
+      save(e);
+      if (x.frage) UI.modal = {art: 'eintrag', i, frage: x.frage, fokus: true};
+      else toast('Eingetragen: ' + x.t + ' ' + hhmm(jetzt));
+      break;
+    }
+    case 'ev-frei': e.verlauf.push({t: new Date().toISOString(), text: ''}); save(e); UI.modal = {art: 'eintrag', i: e.verlauf.length - 1, fokus: true}; break;
+    case 'art': e.art = e.art === v ? '' : v; vorschlagAbrechnung(e); save(e); break;
+    case 'tart': e.tart = e.tart === v ? '' : v; e.einheiten.forEach(u => { if (u.eigene || !u.tart) u.tart = e.tart; }); vorschlagAbrechnung(e); save(e); break;
+    case 'position': await haPosition(e); return;
+    case 'wetter': await haWetter(e); return;
+    case 'sync': toast('Abgleich …'); await abgleich(); break;
+    case 'abschliessen': {
+      e.abgeschlossen = !e.abgeschlossen; save(e);
+      if (e.abgeschlossen && haAktiv() && e.haAlarmTs && UI.ha && UI.ha.alarmTs === e.haAlarmTs) { try { await haCall('input_boolean', 'turn_off', {entity_id: 'input_boolean.einsatzdoku_offen'}); } catch(err) {} }
+      toast(e.abgeschlossen ? 'Einsatz abgeschlossen' : 'Wieder geöffnet');
+      break;
+    }
+    case 'loeschen': if (bestaetigt(b, 'loeschen' + e.id, 'Wirklich löschen? Nochmal tippen')) { await todoLoeschen(e); await cloudLoeschen(e.id); DB.einsaetze = DB.einsaetze.filter(x => x.id !== e.id); save(); UI.aktiv = null; UI.view = 'liste'; } break;
+    case 'pdf-protokoll': UI.teilen = v === 'teilen'; await pdfProtokoll(e); UI.teilen = false; return;
+    case 'pdf-gbu': UI.teilen = v === 'teilen'; await pdfGbu(e); UI.teilen = false; return;
+    case 'adresse-kopieren': try { await navigator.clipboard.writeText(appAdresse()); toast('Adresse kopiert'); } catch(err) { toast(appAdresse(), 6000); } return;
+    case 'listen-speichern': {
+      DB.settings.roster = document.getElementById('roster').value.split('\n').map(z => z.split(';').map(s => s.trim())).filter(z => z[0]).map(z => ({name: z[0], funktion: funktionErkennen(z[1])}));
+      DB.settings.fahrzeuge = document.getElementById('fahrzeuge').value.split('\n').map(z => z.split(';').map(s => s.trim())).filter(z => z[1] || z[0]).map(z => ({art: EINHEIT_ARTEN.includes(z[0]) ? z[0] : 'SEG', name: z[1] || z[0], kennz: z[2] || ''}));
+      save(); toast('Listen gespeichert'); break;
+    }
+    case 'ha-test': {
+      const st = await haState('input_boolean.einsatzdoku_offen');
+      if (!st) { toast('Keine Verbindung – Token oder Adresse prüfen'); return; }
+      try { await todoHolen(); toast('Verbindung und To-do-Liste OK'); } catch(err) { toast('Verbindung OK, aber To-do-Liste nicht gefunden'); }
+      abgleich(); return;
+    }
+    case 'export-json': download(new Blob([JSON.stringify(DB.einsaetze, null, 1)], {type: 'application/json'}), `einsatzdoku_sicherung_${new Date().toISOString().slice(0, 10)}.json`); return;
+  }
+  render();
+});
+document.addEventListener('input', ev => {
+  const p = ev.target.dataset && ev.target.dataset.bind;
+  if (!p) return;
+  const [r, pp] = rootFor(p);
+  setPath(r, pp, ev.target.value);
+  save(p.startsWith('e.') ? aktiv() : null);
+  if (p === 'e.meldung') renderKopf();
+});
+document.addEventListener('change', async ev => {
+  if (ev.target.tagName === 'SELECT' && ev.target.dataset.bind) render();
+  if (ev.target.hasAttribute && ev.target.hasAttribute('data-eigene')) {
+    const fz = DB.settings.fahrzeuge.find(f => f.name === ev.target.value);
+    DB.settings.eigeneEinheit = fz ? Object.assign({}, fz) : {art: 'SEG', name: '', kennz: ''};
+    save(); render(); return;
+  }
+  if (ev.target.hasAttribute && ev.target.hasAttribute('data-vorlage')) {
+    const f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    const b = await f.arrayBuffer();
+    if (!istPdf(b)) { toast('Das ist keine PDF-Datei', 5000); return; }
+    try { localStorage.setItem(VORLAGE_KEY, bufZuBase64(b)); } catch(err) { toast('Vorlage zu groß für den Gerätespeicher', 6000); return; }
+    pdfFehler = null; toast('Vorlage gespeichert – jetzt Protokoll erstellen', 4000); render();
+  }
+});
+
+/* Formular-Vorlage: zuerst neben der App (Home Assistant), sonst die einmal
+   ausgewählte und im Gerät gespeicherte Datei. So läuft der Export auch,
+   wenn die App direkt vom PC oder von einer anderen Adresse geöffnet wird. */
+const VORLAGE_KEY = 'einsatzdoku.vorlage';
+const istPdf = b => new TextDecoder().decode(new Uint8Array(b).slice(0, 5)) === '%PDF-';
+function bufZuBase64(b){ const u = new Uint8Array(b); let s = ''; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); }
+function base64ZuBuf(t){ const s = atob(t); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u.buffer; }
+function vorlageGespeichert(){ try { return !!localStorage.getItem(VORLAGE_KEY); } catch(err) { return false; } }
+async function vorlageHolen(){
+  try { const r = await fetch('einsatzprotokoll.pdf', {cache: 'no-store'}); if (r.ok) { const b = await r.arrayBuffer(); if (istPdf(b)) return b; } } catch(err) { /* z. B. direkt vom PC geöffnet */ }
+  try { const t = localStorage.getItem(VORLAGE_KEY); if (t) return base64ZuBuf(t); } catch(err) {}
+  return null;
+}
+function vorlageWaehler(text){ return `<label class="btn block" style="margin-top:8px;text-align:center;cursor:pointer">${esc(text)}<input type="file" accept="application/pdf,.pdf" data-vorlage hidden></label>`; }
+/* Web-App: Speicherort und Weitergabe per QR-Code */
+function webKarten(){
+  return `<div class="card"><h2>Speicherort</h2><p class="hint" style="margin-top:0">Alle Einsätze bleiben nur auf diesem Handy. Nichts wird hochgeladen oder an andere geschickt. Sichere fertige Protokolle als PDF und ab und zu alle Einsätze als Datei (ganz unten).</p></div>
+  <div class="card"><h2>App weitergeben</h2><div id="qr" class="qr" aria-label="QR-Code mit der Adresse dieser App"></div>
+    <p class="hint">Kolleginnen und Kollegen scannen den Code mit der Handykamera, öffnen die Seite und wählen im Browser-Menü „Zum Startbildschirm hinzufügen“. Jede Person hat danach ihre eigene App, ihre Daten bleiben auf ihrem Handy.</p>
+    <div class="note" style="overflow-wrap:anywhere">${esc(appAdresse())}</div>
+    <button class="btn block" data-a="adresse-kopieren">Adresse kopieren</button></div>`;
+}
+async function qrZeichnen(){
+  const ziel = document.getElementById('qr');
+  if (!ziel || ziel.dataset.fertig) return;
+  try {
+    await laden(QR_URL, 'qrcode');
+    const qr = qrcode(0, 'M'); qr.addData(appAdresse()); qr.make();
+    ziel.innerHTML = qr.createSvgTag({cellSize: 6, margin: 3, scalable: true});
+    ziel.dataset.fertig = '1';
+  } catch(err) { ziel.textContent = 'Der QR-Code braucht einmal Internet.'; }
+}
+
+/* Zweimal tippen statt Bestätigungsdialog (Dialoge gehen nicht in jeder App-Ansicht) */
+let bestaetigung = null;
+function bestaetigt(btn, key, text){
+  if (bestaetigung && bestaetigung.key === key && Date.now() - bestaetigung.t < 4000) { bestaetigung = null; return true; }
+  bestaetigung = {key, t: Date.now()};
+  btn.textContent = text || '?'; btn.style.color = 'var(--red)';
+  toast('Zum Bestätigen nochmal tippen');
+  return false;
+}
+/* Beim Schließen des Eintragsfensters: leere eigene Einträge verwerfen,
+   einen offenen Doppelpunkt („Erkundung:“) ohne Ergänzung wegnehmen */
+function eintragSchliessen(){
+  if (!UI.modal || UI.modal.art !== 'eintrag') return;
+  const e = aktiv(); const x = e && e.verlauf[UI.modal.i];
+  if (!x) return;
+  const t = (x.text || '').trim();
+  if (!t && !x.m) e.verlauf.splice(UI.modal.i, 1);
+  else if (t.endsWith(':')) x.text = t.slice(0, -1);
+  save(e);
+}
+function vorschlagAbrechnung(e){
+  if (['0','8','9'].includes(e.tart)) { e.abrechnung = 'ohne'; return; }
+  const a = EINSATZARTEN.find(x => x.v === e.art);
+  if (a && !e.abrechnung) e.abrechnung = a.abr;
+}
+
+/* --------------------------------------------------------------- PDF */
+function laden(src, globalName){ return new Promise((ok, fail) => { if (window[globalName || 'PDFLib']) return ok(); const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => fail(new Error('pdf-lib')); document.head.appendChild(s); }); }
+const sicher = s => String(s ?? '').replace(/[^\x0A\x20-\x7E\xA0-\xFF–—‘’“”•…€]/g, '');
+async function download(blob, name){
+  if (WEB && UI.teilen) {
+    const datei = new File([blob], name, {type: blob.type});
+    if (navigator.canShare && navigator.canShare({files: [datei]})) {
+      try { await navigator.share({files: [datei], title: name}); } catch(err) { if (err && err.name !== 'AbortError') toast('Teilen nicht möglich – bitte speichern', 5000); }
+      return;
+    }
+  }
+  if (ARTEFAKT) {
+    const dl = await window.claude.use('downloads');
+    if (!dl) { toast('Speichern ist in dieser Ansicht nicht verfügbar', 6000); return; }
+    try { await dl.save({filename: name, data: blob}); toast('Gespeichert: ' + name, 4000); }
+    catch(err) { const c = err && err.code; if (c !== 'declined') toast(c === 'rate_limited' ? 'Bitte kurz warten und nochmal tippen' : 'Speichern nicht möglich (' + c + ')', 6000); }
+    return;
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+function dateiname(e, art){ const d = einsatzDatum(e).slice(0, 10); const m = (e.meldung || 'Einsatz').replace(/[^A-Za-z0-9ÄÖÜäöüß]+/g, '_').slice(0, 30); return `${d}_${art}_${m}.pdf`; }
+async function pdfVorbereiten(){
+  try { await laden(PDF_LIB_URL); } catch(err) { toast('PDF braucht einmal Internet – bitte mit Netz erneut versuchen'); throw err; }
+}
+function gruppeSetzen(form, name, wert){
+  const {PDFName} = PDFLib;
+  let feld; try { feld = form.getField(name); } catch(err) { return; }
+  const af = feld.acroField;
+  af.dict.set(PDFName.of('V'), PDFName.of(wert || 'Off'));
+  af.getWidgets().forEach(w => { const on = w.getOnValue(); w.setAppearanceState(wert && on && on.decodeText() === wert ? on : PDFName.of('Off')); });
+}
+async function pdfProtokoll(e){
+  try {
+    toast('PDF wird erstellt …');
+    await pdfVorbereiten();
+    const {PDFDocument, StandardFonts, PDFName, PDFBool, rgb} = PDFLib;
+    const bytes = await vorlageHolen();
+    if (!bytes) { pdfFehler = 'VORLAGE'; render(); toast('Bitte einmal das offizielle Einsatzprotokoll (PDF) auswählen', 6000); return; }
+    pdfFehler = null;
+    const doc = await PDFDocument.load(bytes);
+    const form = doc.getForm();
+    const T = (n, v) => { try { const f = form.getTextField(n); let s = sicher(v); if (!f.isMultiline()) s = s.replace(/\s*\n\s*/g, ' '); const max = f.getMaxLength(); f.setText(max ? s.slice(0, max) : s); } catch(err) { console.warn(n, err.message); } };
+    // Auswahlfelder: Werte aus der Liste, sonst freier Text (die Felder im Formular erlauben das)
+    const D = (n, v) => { try { const f = form.getDropdown(n); if (!v) return; if (f.getOptions().includes(v) || f.isEditable()) f.select(sicher(v)); } catch(err) { console.warn(n, err.message); } };
+    const s = e;
+    gruppeSetzen(form, 'Protokollgruppe', {'SEG':'SEG','EL WR':'ELWR','Wachstation':'Wachstation'}[s.gruppe]);
+    T('KWW', s.kww); T('Ortsgruppe', s.og); T('KWW-Nummer', s.kwwNr); T('OG-Nummer', s.ogNr);
+    T('Einsatzmeldung', s.meldung); T('Einsatzstelle', s.stelle);
+    for (const k of Object.keys(PDF_ZEIT)) T(PDF_ZEIT[k], hhmm(s.zeiten[k]));
+    T('Datum', datum(einsatzDatum(s)));
+    gruppeSetzen(form, 'Übergabe an RD', s.uebergabeRD ? 'Yes' : null);
+    gruppeSetzen(form, 'Einsatzart', s.art || null);
+    gruppeSetzen(form, 'Einsatzart Sonder', s.art59 ? 'Yes' : null);
+    gruppeSetzen(form, 'Einsatzart ELWR', s.art81 ? 'Yes' : null);
+    T('ILS_Nummer_EL_WR', s.art81 ? s.ilsElwr : '');
+    gruppeSetzen(form, 'ELWR_Fahrzeug', s.art81 ? s.fahrzeug : null);
+    T('Lufttemperatur', s.wetter.luft !== '' ? s.wetter.luft + ' °C' : '');
+    T('Wassertemperatur', s.wetter.wasser !== '' ? s.wetter.wasser + ' °C' : '');
+    gruppeSetzen(form, 'Stroemung', s.wetter.stroemung || null);
+    gruppeSetzen(form, 'Sicht', s.wetter.sicht || null);
+    gruppeSetzen(form, 'Wind', s.wetter.wind || null);
+    gruppeSetzen(form, 'Wetter', s.wetter.symbol || null);
+    s.fk.slice(0, 5).forEach((f, i) => { const n = i + 1; T('FK_Organisation_' + n, f.org); T('FK_Funktion_' + n, f.funktion); T('FK_Funkrufname_' + n, f.funk); T('FK_TMO/DMO/HANDY_' + n, f.tel); });
+    s.einheiten.slice(0, 10).forEach((u, i) => {
+      const n = i + 1; D('EH_EinheitArt_' + n, u.art); T('EH_NameFunk_' + n, u.name); T('EH_An_' + n, hhmm(u.an)); T('EH_Ab_' + n, hhmm(u.ab));
+      T('EH_ILSNr_' + n, u.ils || s.ils); T('EH_KennZ_' + n, u.kennz); D('EH_Transportart_' + n, s.tart || u.tart);
+      T('EH_Staerke_' + n, u.staerke !== '' && u.staerke != null ? u.staerke : (u.eigene ? String(s.kraefte.length) : ''));
+    });
+    s.kraefte.slice(0, 10).forEach((k, i) => { const n = i + 1; T('EKP_Name_' + n, k.name); T('EKP_An_' + n, hhmm(k.an)); T('EKP_Ab_' + n, hhmm(k.ab)); D('EKP_Funktion_' + n, FUNKTION_PDF[k.funktion] || k.funktion); });
+    const vl = s.verlauf.slice().sort((a, b) => new Date(a.t) - new Date(b.t));
+    vl.slice(0, 21).forEach((v, i) => { const n = String(i + 1).padStart(2, '0'); T('EV_Zeit_' + n, hhmm(v.t)); T('EV_Beschreibung_' + n, v.text); });
+    const extra = vl.length > 21 || s.kraefte.length > 10 || s.einheiten.length > 10 || s.fk.length > 5;
+    gruppeSetzen(form, 'Anhang_Extrablatt', extra ? 'Yes' : null);
+    gruppeSetzen(form, 'Anhang_Patientenprotokoll', s.anhang.patient ? 'Yes' : null);
+    gruppeSetzen(form, 'Anhang_Taucheinsatzprotokoll', s.anhang.tauch ? 'Yes' : null);
+    gruppeSetzen(form, 'Einsatz_durchgefuehrt', s.durchgefuehrt || null);
+    gruppeSetzen(form, 'Einsatzabrechnung', s.abrechnung || null);
+    T('Name für Unterschrift', s.unterschrift);
+    const helv = await doc.embedFont(StandardFonts.Helvetica);
+    try { form.updateFieldAppearances(helv); } catch(err) { console.warn('Darstellung', err.message); }
+    form.acroForm.dict.set(PDFName.of('NeedAppearances'), PDFBool.True);
+    if (extra) {
+      // Extrablatt mit allem, was nicht ins Formular passt
+      const zeilen = [];
+      if (vl.length > 21) { zeilen.push(['Einsatzverlauf (Fortsetzung)', true]); vl.slice(21).forEach(v => zeilen.push([hhmm(v.t) + '   ' + v.text, false])); }
+      if (s.kraefte.length > 10) { zeilen.push(['Einsatzkräfte (Fortsetzung)', true]); s.kraefte.slice(10).forEach(k => zeilen.push([`${k.name} · ${k.funktion || ''} · an ${hhmm(k.an)} · ab ${hhmm(k.ab)}`, false])); }
+      if (s.einheiten.length > 10) { zeilen.push(['Eingesetzte Einheiten (Fortsetzung)', true]); s.einheiten.slice(10).forEach(u => zeilen.push([`${u.art} · ${u.name} · an ${hhmm(u.an)} · ab ${hhmm(u.ab)} · ILS ${u.ils} · ${u.kennz} · T-Art ${u.tart || s.tart} · Stärke ${u.staerke}`, false])); }
+      if (s.fk.length > 5) { zeilen.push(['Weitere Führungskräfte (Fortsetzung)', true]); s.fk.slice(5).forEach(f => zeilen.push([`${f.org} · ${f.funktion} · ${f.funk} · ${f.tel}`, false])); }
+      const bold = await doc.embedFont(StandardFonts.HelveticaBold);
+      let page = doc.addPage([595.28, 841.89]); let y = 800;
+      page.drawText(sicher(`Extrablatt zum Einsatzprotokoll – ${s.meldung} – ${datum(einsatzDatum(s))}`), {x: 40, y, size: 13, font: bold}); y -= 28;
+      for (const [txt, fett] of zeilen) {
+        for (const z of umbrechen(sicher(txt), fett ? bold : helv, fett ? 11 : 10, 515)) {
+          if (y < 50) { page = doc.addPage([595.28, 841.89]); y = 800; }
+          page.drawText(z, {x: 40, y, size: fett ? 11 : 10, font: fett ? bold : helv, color: rgb(0, 0, 0)}); y -= fett ? 18 : 14;
+        }
+        if (fett) y -= 2;
+      }
+    }
+    const out = await doc.save();
+    await download(new Blob([out], {type: 'application/pdf'}), dateiname(e, 'Einsatzprotokoll'));
+    if (!ARTEFAKT) toast('Einsatzprotokoll erstellt');
+  } catch(err) { console.error(err); if (err.message !== 'pdf-lib') { toast('PDF-Fehler: ' + err.message, 12000); pdfFehler = err.message; render(); } }
+}
+let pdfFehler = null;
+function umbrechen(text, font, size, breite){
+  const worte = text.split(/\s+/); const zeilen = []; let z = '';
+  for (const w of worte) { const t = z ? z + ' ' + w : w; if (font.widthOfTextAtSize(t, size) > breite && z) { zeilen.push(z); z = w; } else z = t; }
+  if (z) zeilen.push(z);
+  return zeilen.length ? zeilen : [''];
+}
+async function pdfGbu(e){
+  try {
+    toast('PDF wird erstellt …');
+    await pdfVorbereiten();
+    const {PDFDocument, StandardFonts, rgb} = PDFLib;
+    const doc = await PDFDocument.create();
+    const page = doc.addPage([595.28, 841.89]);
+    const helv = await doc.embedFont(StandardFonts.Helvetica);
+    const bold = await doc.embedFont(StandardFonts.HelveticaBold);
+    const schwarz = rgb(0, 0, 0), grau = rgb(0.85, 0.85, 0.85);
+    const farbe = [null, rgb(0.6, 0.82, 0.47), rgb(1, 0.92, 0.3), rgb(0.93, 0.25, 0.25)];
+    const txt = (t, x, y, size = 9, font = helv) => page.drawText(sicher(t), {x, y, size, font, color: schwarz});
+    const box = (x, y, w, h, fill) => page.drawRectangle({x, y, width: w, height: h, borderColor: schwarz, borderWidth: 0.6, color: fill || undefined});
+    txt('Wasserwacht', 40, 800, 12, bold);
+    txt('Gefahren an der Einsatzstelle', 330, 806, 15, bold); txt('Checkliste', 330, 790, 11);
+    // Kopf
+    box(40, 740, 515, 36); box(40, 712, 515, 28);
+    txt('Einsatzstelle: ' + (e.stelle || ''), 45, 760, 9); txt('Lfd. Nr.:', 440, 760, 9);
+    txt('Datum: ' + datum(e.gbu.zeit || einsatzDatum(e)), 45, 722, 9); txt('Uhrzeit: ' + hhmm(e.gbu.zeit || einsatzDatum(e)), 140, 722, 9);
+    txt('Erfasser / Funktion: ' + (e.gbu.erfasser || ''), 225, 722, 9); txt('Unterschrift:', 440, 722, 9);
+    // Tabelle
+    const X = {nr: 40, name: 60, g: 245, m: 280, h: 315, ms: 350, ende: 555};
+    let y = 690;
+    box(X.nr, y, X.ende - X.nr, 18, grau);
+    txt('Gefahrenmerkschema', X.name + 3, y + 5, 9, bold);
+    [['gering', X.g, 1], ['mittel', X.m, 2], ['hoch', X.h, 3]].forEach(([t, x, l]) => { box(x, y, 35, 18, farbe[l]); txt(t, x + 4, y + 5, 7.5, bold); });
+    txt('Maßnahmen und Bemerkungen', X.ms + 4, y + 5, 9, bold);
+    const zh = 22;
+    GBU.forEach((g, i) => {
+      if (i === 14) { y -= 14; box(X.nr, y, X.ende - X.nr, 14, grau); txt('weitere Gefahren', X.name + 3, y + 4, 8, bold); }
+      y -= zh;
+      box(X.nr, y, 20, zh); box(X.name, y, X.g - X.name, zh); box(X.g, y, 35, zh); box(X.m, y, 35, zh); box(X.h, y, 35, zh); box(X.ms, y, X.ende - X.ms, zh);
+      txt(String(g[0]), X.nr + 4, y + 8, 8);
+      txt(g[1], X.name + 3, y + 11, 8.5, bold); txt(g[2], X.name + 3, y + 3, 6.2);
+      const l = e.gbu.werte[i] || 0;
+      if (l) { const x = [0, X.g, X.m, X.h][l]; page.drawRectangle({x: x + 0.6, y: y + 0.6, width: 33.8, height: zh - 1.2, color: farbe[l]}); txt('X', x + 14, y + 7, 11, bold); }
+      const m = (i === 4 ? 'PSNV' + (e.gbu.massn[i] ? ': ' : '') : '') + (e.gbu.massn[i] || '');
+      umbrechen(sicher(m), helv, 7, X.ende - X.ms - 8).slice(0, 2).forEach((z, j) => txt(z, X.ms + 4, y + 12 - j * 8, 7));
+    });
+    y -= 26;
+    [['gering', 'Einsatz ohne zusätzliche Gegenmaßnahmen durchführbar', 1], ['mittel', 'Erhöhte Vorsicht geboten und zusätzliche Schutzmaßnahmen vorsehen', 2], ['hoch', 'Kein Einsatz ohne vorherige, geeignete Schutzmaßnahmen. Ggf. Einsatzabbruch!', 3]].forEach(([t, d, l]) => {
+      box(X.nr, y, 50, 13, farbe[l]); txt(t, X.nr + 4, y + 3.5, 8, bold); box(X.nr + 50, y, X.ende - X.nr - 50, 13); txt(d, X.nr + 55, y + 3.5, 8, l === 3 ? bold : helv); y -= 13;
+    });
+    txt('Die ausgefüllte Checkliste muss geeignet aufbewahrt werden, z.B. als Anlage zum Einsatztagebuch.', 40, y - 14, 8.5);
+    txt('Nach der Checkliste "Gefahren an der Einsatzstelle" der Wasserwacht (Stand 01.10.2018), erstellt mit der Einsatzdoku-App.', 40, 30, 6.5);
+    const out = await doc.save();
+    await download(new Blob([out], {type: 'application/pdf'}), dateiname(e, 'Gefaehrdungsbeurteilung'));
+    if (!ARTEFAKT) toast('Gefährdungsbeurteilung erstellt');
+  } catch(err) { console.error(err); if (err.message !== 'pdf-lib') toast('PDF-Fehler: ' + err.message); }
+}
+
+/* ---------------------------------------------------------------- Start */
+render();
+speicherStart();
+abgleich();
+if (WEB) {
+  // Daten vor dem automatischen Aufräumen des Browsers schützen, offline nutzbar machen
+  try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch(err) {}
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+setInterval(() => { if (document.visibilityState === 'visible') abgleich(); }, 60000);
+setInterval(() => { if (UI.view === 'einsatz') renderKopf(); }, 30000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { abgleich(); wachHalten(UI.view === 'einsatz' && !!aktiv() && !aktiv().abgeschlossen); } });
+</script>
+</body>
+</html>
